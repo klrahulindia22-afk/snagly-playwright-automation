@@ -1,0 +1,9 @@
+import pytest
+from playwright.sync_api import expect
+
+
+@pytest.mark.smoke
+@pytest.mark.boards
+def test_authenticated_user_can_open_boards(authenticated_page):
+    expect(authenticated_page).to_have_url("**/boards")
+    expect(authenticated_page.get_by_text("My Boards")).to_be_visible()
