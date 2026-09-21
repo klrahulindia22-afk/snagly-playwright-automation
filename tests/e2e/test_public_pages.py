@@ -9,7 +9,9 @@ from utils.accessibility import assert_no_horizontal_overflow
 
 @pytest.mark.public
 @pytest.mark.smoke
-def test_landing_page_core_navigation(page, app_url):
+@pytest.mark.case_id("SNAG-TC-001")
+def test_landing_page_core_navigation(page, app_url, case_data):
+    assert case_data.module == "Landing Page"
     landing = LandingPage(page, app_url)
     landing.open()
     expect(page.get_by_role("link", name="Pricing").first).to_be_visible()

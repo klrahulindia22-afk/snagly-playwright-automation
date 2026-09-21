@@ -1,6 +1,71 @@
-# Snagly controlled test data
+# Automatic test-data management
 
-Run the following from the Snagly application repository after configuring a **dedicated test database**. Never run it against production data.
+The framework contains a validated data record for every manual test case from `SNAG-TC-001` through `SNAG-TC-172`. Tests request `case_data`; pytest reads the test's `case_id` marker and resolves the right static, generated and secret values only when that test executes.
+
+## Data layers
+
+| Layer | Source | Purpose |
+|---|---|---|
+| Case catalogue | `test_data/cases.json` | Module, scenario, priority, role and required data groups for all 172 cases |
+| Shared safe data | `test_data/common.json` | Boundaries, valid/invalid inputs, security payloads, viewports and attachment specifications |
+| Runtime data | `test_data/registry.py` | Environment credentials, unique entity names, relative dates and a per-test temporary directory |
+
+Secrets are never stored in JSON. Owner, Admin, Team, Client and Other Owner credentials are read from `.env` through `Settings`. Unique names include `TEST_RUN_ID`; dates are calculated at execution time; temporary files are removed by pytest.
+
+## Automatic lookup
+
+```python
+import pytest
+
+
+@pytest.mark.case_id("SNAG-TC-009")
+def test_valid_login(page, app_url, case_data, case_user):
+    assert case_data.scenario
+    page.goto(f"{app_url}/login")
+    # case_user contains credentials for the role assigned to SNAG-TC-009.
+```
+
+Resolution is automatic:
+
+1. pytest finds `@pytest.mark.case_id("SNAG-TC-...")`.
+2. `case_data` asks the session-scoped registry for that ID.
+3. The registry merges the case's referenced groups from `common.json`.
+4. It injects runtime credentials, unique names, dates and `tmp_path`.
+5. An unknown or incomplete catalogue fails validation instead of silently using wrong data.
+
+| Fixture | Result |
+|---|---|
+| `test_data_registry` | Validated full catalogue, loaded once per pytest session |
+| `case_data` | Metadata and merged values for the current `case_id` |
+| `case_user` | Credentials for the case's assigned role; skips clearly when unset |
+| `test_file_factory` | Exact-size disposable files for upload boundary tests |
+
+Example value access:
+
+```python
+valid_email = case_data.values["emails"]["valid"]
+xss_payloads = case_data.values["security_payloads"]["xss"]
+board_name = case_data.values["unique"]["board"]
+future_date = case_data.values["dates"]["future"]
+```
+
+Only groups listed in a case's `data_refs` are merged. Runtime values (`users`, `unique`, `dates`, `temp_dir`) are always available.
+
+## Regenerating from the master workbook
+
+When the approved workbook changes, regenerate the case catalogue rather than editing 172 records manually:
+
+```bash
+python scripts/generate_case_data.py /path/to/Snagly_Complete_App_Test_Cases.xlsx \
+  --output test_data/cases.json
+pytest tests/unit/test_test_data_registry.py -q
+```
+
+The generator infers the role and required shared datasets from the module, type, scenario and original test-data description while preserving the workbook text for traceability. Review the JSON diff and commit it with the workbook change reference.
+
+## Seeded application data
+
+For tests that need persistent relationships, seed a dedicated test database from the Snagly application repository. Never run the seed against production.
 
 ```bash
 cd backend
@@ -8,37 +73,13 @@ export TEST_DB_URL='mysql+aiomysql://USER:PASSWORD@localhost:3306/snagly_test'
 python -m tests.seed
 ```
 
-The seed is idempotent: it can be run again without creating duplicate users, boards, columns, cards, labels, comments, or checklist items.
+The environment should contain verified Owner, Admin, Team, Client and Other Owner accounts, an accessible board with Kanban lists/cards/labels, and a separate private board for isolation checks. Configure credentials in `.env`; shared CI environments must use secret storage.
 
-## Test users
+## Lifecycle rules
 
-| Purpose | Email | Password | Role |
-|---|---|---|---|
-| Admin checks | `admin@test.com` | `Admin@1234` | Super Admin |
-| Owner workflows | `owner@test.com` | `Owner@1234` | Board Owner |
-| Team workflows | `team@test.com` | `Team@1234` | Team Member |
-| Client restrictions | `client@test.com` | `Client@1234` | Client |
-| Access-control negative checks | `other@test.com` | `Other@1234` | Other Board Owner |
-
-These credentials are development-only fixtures. Replace them with CI secrets when the test environment is shared.
-
-## Front-end test scenarios
-
-| Data set | What it verifies |
-|---|---|
-| `Test Board` | Board landing, filters, columns, drag/drop, counts, and role-based visibility |
-| Backlog / In Progress / Review / Done | Kanban ordering and state transitions |
-| Critical login bug | Priority, severity, client source, assignee, checklist, and comments |
-| UI / Regression / Client Reported labels | Label filtering and badge display |
-| Completed profile card | Completed-card display and closed-state regression tests |
-| `Other Board` | User-data isolation: the Client must not see this board |
-
-## Back-end/API test scenarios
-
-- Authentication: verified active users for each role.
-- Authorization: Owner and Team can update board work; Client cannot alter lists or labels.
-- Card payloads: urgent/high/normal/low priorities, critical/high/medium/low severities, internal/client sources, due dates, and complete state.
-- Related records: labels, assignees, checklist progress, and comments.
-- Isolation: one board with membership and one private board without Client membership.
-
-The automation project exposes all stable names through `test_data/catalog.py`; UI/API tests should reference those constants rather than numeric database IDs.
+- Prefer API-created disposable records and delete them in fixture teardown.
+- Never hard-code database IDs; retain IDs returned by the API.
+- Never commit credentials, tokens, customer data or real payment details.
+- Generate uploads through `test_file_factory`; do not commit large binaries.
+- Use sandbox services for email, payments, integrations and destructive security payloads.
+- Run parallel workers with distinct `TEST_RUN_ID` values when the environment does not provide build-specific IDs.

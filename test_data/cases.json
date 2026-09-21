@@ -1,0 +1,2518 @@
+{
+  "schema_version": 1,
+  "expected_count": 172,
+  "cases": [
+    {
+      "case_id": "SNAG-TC-001",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Verify landing page loads",
+      "preconditions": "User is logged out",
+      "source_test_data": "Public URL",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-002",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Verify Login navigation",
+      "preconditions": "User is logged out",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-003",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Verify Start Free navigation",
+      "preconditions": "User is logged out",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-004",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Verify Pricing navigation",
+      "preconditions": "User is logged out",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-005",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "UI",
+      "priority": "Medium",
+      "scenario": "Verify interactive feature tabs",
+      "preconditions": "Landing page loaded",
+      "source_test_data": "Smart Filters, Integrations, Dashboard, Auto-capture",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-006",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Verify demo board card interaction",
+      "preconditions": "Landing page loaded",
+      "source_test_data": "Any visible demo card",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-007",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Compatibility",
+      "priority": "Medium",
+      "scenario": "Verify landing page on supported browsers",
+      "preconditions": "None",
+      "source_test_data": "Latest two versions",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-008",
+      "module": "Landing Page",
+      "submodule": "Navigation",
+      "type": "Responsive",
+      "priority": "High",
+      "scenario": "Verify landing page across breakpoints",
+      "preconditions": "None",
+      "source_test_data": "Viewport matrix",
+      "role": "owner",
+      "data_refs": [
+        "viewports"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-009",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Login with valid credentials",
+      "preconditions": "Registered active user exists",
+      "source_test_data": "Valid user",
+      "role": "owner",
+      "data_refs": [
+        "emails"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-010",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Reject invalid password",
+      "preconditions": "Registered user exists",
+      "source_test_data": "Wrong password",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-011",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Reject unregistered email",
+      "preconditions": "None",
+      "source_test_data": "unknown@example.com",
+      "role": "owner",
+      "data_refs": [
+        "emails"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-012",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Required field validation",
+      "preconditions": "None",
+      "source_test_data": "Blank values",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-013",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Validation",
+      "priority": "Medium",
+      "scenario": "Email format validation",
+      "preconditions": "None",
+      "source_test_data": "abc, a@, @b.com",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-014",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "SQL/XSS payload handling on login",
+      "preconditions": "None",
+      "source_test_data": "' OR 1=1 --, <script>alert(1)</script>",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-015",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Password masking and reveal behavior",
+      "preconditions": "Login page loaded",
+      "source_test_data": "Strong password",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-016",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Session persists on normal navigation",
+      "preconditions": "User successfully logs in",
+      "source_test_data": "Valid user",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-017",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Protected routes reject logged-out access",
+      "preconditions": "Authenticated session exists",
+      "source_test_data": "Protected URLs",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-018",
+      "module": "Authentication",
+      "submodule": "Login",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Sign out",
+      "preconditions": "Authenticated user",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [
+        "emails"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-019",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Create account with valid data",
+      "preconditions": "Email is unused",
+      "source_test_data": "Valid unique user",
+      "role": "owner",
+      "data_refs": [
+        "emails"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-020",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Validate signup required fields",
+      "preconditions": "None",
+      "source_test_data": "Blank values",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-021",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Reject mismatched passwords",
+      "preconditions": "None",
+      "source_test_data": "Password1! / Password2!",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-022",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Enforce password policy",
+      "preconditions": "None",
+      "source_test_data": "short, no number, no symbol",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-023",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Reject duplicate account",
+      "preconditions": "Email already registered",
+      "source_test_data": "Existing email",
+      "role": "owner",
+      "data_refs": [
+        "emails"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-024",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Request password reset",
+      "preconditions": "Registered email exists",
+      "source_test_data": "Registered email",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-025",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Password reset does not enumerate users",
+      "preconditions": "None",
+      "source_test_data": "Two emails",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-026",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Reset password using valid token",
+      "preconditions": "Valid reset link exists",
+      "source_test_data": "Strong new password",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "passwords",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-027",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Reject invalid reset token",
+      "preconditions": "Expired/used reset token exists",
+      "source_test_data": "Expired token",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-028",
+      "module": "Authentication",
+      "submodule": "Signup & Password Reset",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Invalidate old credentials/sessions",
+      "preconditions": "Password was reset",
+      "source_test_data": "Old password/session",
+      "role": "owner",
+      "data_refs": [
+        "emails",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-029",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Toggle Monthly and Yearly billing",
+      "preconditions": "Pricing page loaded",
+      "source_test_data": "Billing toggle",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-030",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Verify plan cards and CTAs",
+      "preconditions": "Pricing page loaded",
+      "source_test_data": "All plans",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-031",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Data",
+      "priority": "High",
+      "scenario": "Validate displayed plan limits",
+      "preconditions": "Pricing page loaded",
+      "source_test_data": "Published plan matrix",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-032",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Expand feature comparison",
+      "preconditions": "Pricing page loaded",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-033",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "Low",
+      "scenario": "Expand and collapse FAQ items",
+      "preconditions": "Pricing page loaded",
+      "source_test_data": "All FAQ items",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-034",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Enforce board limit",
+      "preconditions": "Logged-in Free user at board limit",
+      "source_test_data": "Free plan",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-035",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Enforce plan resource limits",
+      "preconditions": "User at member/file/attachment limit",
+      "source_test_data": "Boundary + 1",
+      "role": "team",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-036",
+      "module": "Pricing & Subscription",
+      "submodule": "Plans",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Prevent client-side plan bypass",
+      "preconditions": "User has lower plan",
+      "source_test_data": "Restricted feature",
+      "role": "client",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-037",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "View active boards",
+      "preconditions": "Authenticated owner",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-038",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Switch Active and Archived tabs",
+      "preconditions": "Archived board exists",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-039",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Create board with valid name",
+      "preconditions": "Plan allows board creation",
+      "source_test_data": "QA Regression",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-040",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Validate blank and whitespace board name",
+      "preconditions": "New Board dialog open",
+      "source_test_data": "Blank, spaces",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-041",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Validation",
+      "priority": "Medium",
+      "scenario": "Validate board-name boundaries",
+      "preconditions": "Board creation open",
+      "source_test_data": "Boundary strings",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-042",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Rename board",
+      "preconditions": "Owner has board",
+      "source_test_data": "Release QA",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-043",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Archive board",
+      "preconditions": "Owner has active board",
+      "source_test_data": "Active board",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-044",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Restore archived board",
+      "preconditions": "Archived board exists",
+      "source_test_data": "Archived board",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-045",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Enforce board lifecycle permissions",
+      "preconditions": "Non-owner member exists",
+      "source_test_data": "Member/client roles",
+      "role": "team",
+      "data_refs": [
+        "boards",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-046",
+      "module": "Boards",
+      "submodule": "Dashboard & Lifecycle",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Handle board load/create failure",
+      "preconditions": "Network can be interrupted",
+      "source_test_data": "HTTP 500/timeout",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-047",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Default lists display in configured order",
+      "preconditions": "Board is open",
+      "source_test_data": "Backlog, Open, In Progress, Review, Closed",
+      "role": "owner",
+      "data_refs": [
+        "lists"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-048",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Add a new list",
+      "preconditions": "Owner/editor",
+      "source_test_data": "Blocked",
+      "role": "owner",
+      "data_refs": [
+        "lists"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-049",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Validation",
+      "priority": "Medium",
+      "scenario": "Validate list name",
+      "preconditions": "Add list open",
+      "source_test_data": "Boundary data",
+      "role": "owner",
+      "data_refs": [
+        "lists",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-050",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Rename a list",
+      "preconditions": "Custom list exists",
+      "source_test_data": "Ready for QA",
+      "role": "owner",
+      "data_refs": [
+        "lists"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-051",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Reorder lists",
+      "preconditions": "Multiple lists exist",
+      "source_test_data": "Existing list",
+      "role": "owner",
+      "data_refs": [
+        "lists"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-052",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Delete/archive list safely",
+      "preconditions": "List contains cards",
+      "source_test_data": "Non-empty list",
+      "role": "owner",
+      "data_refs": [
+        "lists"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-053",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Drag card between lists",
+      "preconditions": "Card exists",
+      "source_test_data": "Existing card",
+      "role": "owner",
+      "data_refs": [
+        "lists",
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-054",
+      "module": "Lists",
+      "submodule": "Kanban Columns",
+      "type": "Concurrency",
+      "priority": "High",
+      "scenario": "Concurrent card/list movement",
+      "preconditions": "Two users have board open",
+      "source_test_data": "Same entity",
+      "role": "owner",
+      "data_refs": [
+        "lists",
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-055",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Create card with required title only",
+      "preconditions": "Board open with editable list",
+      "source_test_data": "Checkout defect",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-056",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Create card with all fields",
+      "preconditions": "Create card dialog open",
+      "source_test_data": "Complete defect record",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-057",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Title required validation",
+      "preconditions": "Create card dialog open",
+      "source_test_data": "Blank title",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-058",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Validation",
+      "priority": "Medium",
+      "scenario": "Title and description boundaries",
+      "preconditions": "Create card dialog open",
+      "source_test_data": "Boundary strings and emoji",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-059",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Open card detail",
+      "preconditions": "Card exists",
+      "source_test_data": "Existing card",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-060",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Edit every card field",
+      "preconditions": "Card exists and user can edit",
+      "source_test_data": "Updated values",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-061",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Cancel/discard card edits",
+      "preconditions": "Card exists",
+      "source_test_data": "Unsaved changes",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-062",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Delete/archive card",
+      "preconditions": "Card exists",
+      "source_test_data": "Existing card",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-063",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Duplicate/card copy behavior",
+      "preconditions": "Card exists",
+      "source_test_data": "Existing card",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-064",
+      "module": "Cards",
+      "submodule": "Create & Detail",
+      "type": "Data",
+      "priority": "Critical",
+      "scenario": "Card data persists after refresh and re-login",
+      "preconditions": "Card is updated repeatedly",
+      "source_test_data": "Existing card",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-065",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Assign and unassign member",
+      "preconditions": "Card open",
+      "source_test_data": "Board member",
+      "role": "team",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-066",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Prevent assigning non-member",
+      "preconditions": "User not on board exists",
+      "source_test_data": "External user",
+      "role": "team",
+      "data_refs": [
+        "cards",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-067",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Add existing label",
+      "preconditions": "Card open",
+      "source_test_data": "Existing label",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "labels"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-068",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Create/edit/delete label",
+      "preconditions": "Permission allows label management",
+      "source_test_data": "UI / Frontend",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "labels"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-069",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Set valid due date",
+      "preconditions": "Card open",
+      "source_test_data": "Future date",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-070",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Overdue calculation",
+      "preconditions": "Past-due open card exists",
+      "source_test_data": "Yesterday",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-071",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Closed card overdue behavior",
+      "preconditions": "Overdue card exists",
+      "source_test_data": "Past due card",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-072",
+      "module": "Cards",
+      "submodule": "Metadata, Labels & Due Dates",
+      "type": "Timezone",
+      "priority": "High",
+      "scenario": "Due date consistency across timezone",
+      "preconditions": "Users in different timezones",
+      "source_test_data": "Boundary date",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-073",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Upload supported attachment",
+      "preconditions": "Card create/detail open",
+      "source_test_data": "PDF/PNG under plan limit",
+      "role": "owner",
+      "data_refs": [
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-074",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Drag and drop attachment",
+      "preconditions": "Upload area visible",
+      "source_test_data": "Valid image",
+      "role": "owner",
+      "data_refs": [
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-075",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Reject file above size limit",
+      "preconditions": "Upload area visible",
+      "source_test_data": "Free >5MB / plan boundary",
+      "role": "owner",
+      "data_refs": [
+        "attachments",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-076",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Reject dangerous file types/content",
+      "preconditions": "Upload area visible",
+      "source_test_data": "malware.exe, x.jpg.html",
+      "role": "owner",
+      "data_refs": [
+        "attachments",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-077",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Respect per-card attachment limit",
+      "preconditions": "Card has attachments",
+      "source_test_data": "Plan boundary",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-078",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Download attachment authorization",
+      "preconditions": "Attachment exists",
+      "source_test_data": "Attachment URL",
+      "role": "owner",
+      "data_refs": [
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-079",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Delete attachment",
+      "preconditions": "Attachment exists",
+      "source_test_data": "Existing attachment",
+      "role": "owner",
+      "data_refs": [
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-080",
+      "module": "Attachments",
+      "submodule": "Upload & Management",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Recover failed upload",
+      "preconditions": "Network interruption available",
+      "source_test_data": "Large valid file",
+      "role": "owner",
+      "data_refs": [
+        "attachments"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-081",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Search exact card title",
+      "preconditions": "Cards exist across boards",
+      "source_test_data": "Known title",
+      "role": "owner",
+      "data_refs": [
+        "cards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-082",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Search partial and case-insensitive text",
+      "preconditions": "Cards exist",
+      "source_test_data": "checkOUT",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-083",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Search supported metadata",
+      "preconditions": "Cards contain description/labels",
+      "source_test_data": "Known values",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-084",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "UI",
+      "priority": "Medium",
+      "scenario": "Empty query state",
+      "preconditions": "Search open",
+      "source_test_data": "Blank",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-085",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Negative",
+      "priority": "Medium",
+      "scenario": "No-result state",
+      "preconditions": "Search open",
+      "source_test_data": "zz_no_match_987",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-086",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Performance",
+      "priority": "High",
+      "scenario": "Search response time",
+      "preconditions": "Large dataset exists",
+      "source_test_data": "Common term",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-087",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Search input injection safety",
+      "preconditions": "Search open",
+      "source_test_data": "<img onerror=...>",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-088",
+      "module": "Search & Filters",
+      "submodule": "Global Search",
+      "type": "Keyboard",
+      "priority": "Medium",
+      "scenario": "Search keyboard shortcut and Escape",
+      "preconditions": "Search available",
+      "source_test_data": "Keyboard",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-089",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by priority",
+      "preconditions": "Board has varied cards",
+      "source_test_data": "Urgent, High, Normal, Low",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-090",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by severity",
+      "preconditions": "Board has varied cards",
+      "source_test_data": "Critical, High, Medium, Low",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-091",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by source",
+      "preconditions": "Board has internal/client cards",
+      "source_test_data": "Source",
+      "role": "client",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-092",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by due date",
+      "preconditions": "Board has due-date variants",
+      "source_test_data": "Due date filters",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-093",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by column",
+      "preconditions": "Board has cards in all lists",
+      "source_test_data": "All columns",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-094",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Combine filters with AND logic",
+      "preconditions": "Multiple filters available",
+      "source_test_data": "High + Critical + Overdue",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-095",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Clear filters",
+      "preconditions": "Filters active",
+      "source_test_data": "Active filters",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-096",
+      "module": "Search & Filters",
+      "submodule": "Board Filters",
+      "type": "Data",
+      "priority": "Medium",
+      "scenario": "Filter persistence behavior",
+      "preconditions": "Filters active",
+      "source_test_data": "Active filters",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-097",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Invite team member by valid email",
+      "preconditions": "Owner on board",
+      "source_test_data": "Unused valid email",
+      "role": "team",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-098",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Invite client role",
+      "preconditions": "Owner on board",
+      "source_test_data": "Client email",
+      "role": "client",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-099",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Validate invite email",
+      "preconditions": "Share dialog open",
+      "source_test_data": "bad@",
+      "role": "owner",
+      "data_refs": [
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-100",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Handle duplicate invite",
+      "preconditions": "Member already invited/joined",
+      "source_test_data": "Existing member email",
+      "role": "team",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-101",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Accept invitation",
+      "preconditions": "Pending invite exists",
+      "source_test_data": "Invite link",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-102",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Reject invalid invite links",
+      "preconditions": "Expired/revoked invite exists",
+      "source_test_data": "Invalid token",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-103",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Create/copy/disable share link",
+      "preconditions": "Share links supported",
+      "source_test_data": "Share link",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-104",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Approve join request",
+      "preconditions": "Join request exists",
+      "source_test_data": "Pending requester",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-105",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Reject join request",
+      "preconditions": "Join request exists",
+      "source_test_data": "Pending requester",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-106",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Verify role authorization matrix",
+      "preconditions": "Team and Client users exist",
+      "source_test_data": "Owner, Team, Client",
+      "role": "client",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-107",
+      "module": "Sharing & Roles",
+      "submodule": "Members, Invites & Links",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Change member role/remove member",
+      "preconditions": "Member exists",
+      "source_test_data": "Existing member",
+      "role": "team",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-108",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Open board reports",
+      "preconditions": "Board contains cards",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-109",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by assignee",
+      "preconditions": "Reports contain varied data",
+      "source_test_data": "Board member",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-110",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by label",
+      "preconditions": "Labels exist",
+      "source_test_data": "Existing label",
+      "role": "owner",
+      "data_refs": [
+        "labels",
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-111",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Filter by source",
+      "preconditions": "Internal/client cards exist",
+      "source_test_data": "Source filter",
+      "role": "client",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-112",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Change 7d/14d/30d/90d range",
+      "preconditions": "Historical data exists",
+      "source_test_data": "Date ranges",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-113",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Data",
+      "priority": "Critical",
+      "scenario": "Reconcile report metrics with board",
+      "preconditions": "Known seeded card dataset exists",
+      "source_test_data": "Seeded dataset",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-114",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Export CSV",
+      "preconditions": "Report filters applied",
+      "source_test_data": "Filtered report",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-115",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Export PDF",
+      "preconditions": "Report filters applied",
+      "source_test_data": "Filtered report",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-116",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Open Global Reports",
+      "preconditions": "User belongs to multiple boards",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-117",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Report data isolation",
+      "preconditions": "Client role exists",
+      "source_test_data": "Other board ID",
+      "role": "client",
+      "data_refs": [
+        "report_periods",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-118",
+      "module": "Reports",
+      "submodule": "Board & Global Reports",
+      "type": "Performance",
+      "priority": "High",
+      "scenario": "Report generation performance",
+      "preconditions": "Large reporting dataset exists",
+      "source_test_data": "Large dataset",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-119",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Receive notification for assignment/invite/comment",
+      "preconditions": "Notification-triggering event occurs",
+      "source_test_data": "Assignment/invite/update",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-120",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Open notification destination",
+      "preconditions": "Unread notification exists",
+      "source_test_data": "Existing notification",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-121",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Mark one/all as read",
+      "preconditions": "Multiple unread items exist",
+      "source_test_data": "Unread items",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-122",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Notification pagination/empty state",
+      "preconditions": "Old notifications exist",
+      "source_test_data": "Notification dataset",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-123",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Access revoked after notification",
+      "preconditions": "Notification references inaccessible resource",
+      "source_test_data": "Revoked board",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-124",
+      "module": "Notifications",
+      "submodule": "In-app Notifications",
+      "type": "Concurrency",
+      "priority": "Medium",
+      "scenario": "Notification real-time synchronization",
+      "preconditions": "Same account open in two sessions",
+      "source_test_data": "Two sessions",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-125",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Open profile",
+      "preconditions": "Authenticated user",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-126",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Update display name/avatar fields",
+      "preconditions": "Profile page open",
+      "source_test_data": "Updated name",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-127",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Validation",
+      "priority": "Medium",
+      "scenario": "Validate profile boundaries",
+      "preconditions": "Profile page open",
+      "source_test_data": "Boundary values",
+      "role": "owner",
+      "data_refs": [
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-128",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Functional",
+      "priority": "Medium",
+      "scenario": "Toggle dark/light mode",
+      "preconditions": "Authenticated user",
+      "source_test_data": "Theme toggle",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-129",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Verify dark-mode contrast and focus",
+      "preconditions": "Dark mode enabled",
+      "source_test_data": "Dark theme",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-130",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Change password securely",
+      "preconditions": "Profile/security settings available",
+      "source_test_data": "Valid strong password",
+      "role": "owner",
+      "data_refs": [
+        "passwords",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-131",
+      "module": "Profile & Preferences",
+      "submodule": "Account",
+      "type": "Functional",
+      "priority": "High",
+      "scenario": "Account deletion confirmation flow",
+      "preconditions": "Account deletion available",
+      "source_test_data": "Disposable account",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-132",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Push card to ClickUp",
+      "preconditions": "Pro+ user and valid integration configured",
+      "source_test_data": "Valid mapping",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "integration_errors"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-133",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Functional",
+      "priority": "Critical",
+      "scenario": "Push card to GitHub",
+      "preconditions": "Pro+ user and valid GitHub connection",
+      "source_test_data": "Valid repository",
+      "role": "owner",
+      "data_refs": [
+        "cards",
+        "integration_errors"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-134",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Validation",
+      "priority": "High",
+      "scenario": "Validate required integration settings",
+      "preconditions": "Integration setup open",
+      "source_test_data": "Invalid configuration",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-135",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Protect tokens and secrets",
+      "preconditions": "Integration credentials configured",
+      "source_test_data": "Saved token",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-136",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Negative",
+      "priority": "High",
+      "scenario": "Handle expired/revoked token",
+      "preconditions": "Provider returns 401/403",
+      "source_test_data": "401/403",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-137",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Reliability",
+      "priority": "Critical",
+      "scenario": "Auto-retry push failure",
+      "preconditions": "Provider times out/returns 5xx",
+      "source_test_data": "Timeout/500",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-138",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Data",
+      "priority": "High",
+      "scenario": "Prevent/reconcile duplicate push",
+      "preconditions": "Card was pushed previously",
+      "source_test_data": "Existing external ID",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-139",
+      "module": "Integrations",
+      "submodule": "ClickUp & GitHub",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Integration authorization",
+      "preconditions": "User lacks board/integration permission",
+      "source_test_data": "Client role",
+      "role": "owner",
+      "data_refs": [
+        "integration_errors",
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-140",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Horizontal authorization/IDOR",
+      "preconditions": "Test environment authorization",
+      "source_test_data": "Another user resource ID",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-141",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Privilege escalation",
+      "preconditions": "Multiple roles exist",
+      "source_test_data": "Client to Owner",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-142",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Stored/reflected XSS",
+      "preconditions": "Forms and rich text available",
+      "source_test_data": "XSS payload set",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-143",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Injection resistance",
+      "preconditions": "API accepts user input",
+      "source_test_data": "Injection corpus",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-144",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "CSRF protection",
+      "preconditions": "Authenticated session exists",
+      "source_test_data": "Create/update/delete endpoint",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-145",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Security headers and transport",
+      "preconditions": "App running over HTTPS",
+      "source_test_data": "App origin",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-146",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "Critical",
+      "scenario": "Rate limiting and abuse protection",
+      "preconditions": "Login/reset/invite endpoints available",
+      "source_test_data": "Burst requests",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-147",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Sensitive data in logs/errors",
+      "preconditions": "Sensitive workflows exist",
+      "source_test_data": "Credentials/tokens/test PII",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-148",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Session timeout and logout invalidation",
+      "preconditions": "Session active",
+      "source_test_data": "Expired token",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads",
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-149",
+      "module": "Security",
+      "submodule": "Application Security",
+      "type": "Security",
+      "priority": "High",
+      "scenario": "Cache and URL data exposure",
+      "preconditions": "File export/share links exist",
+      "source_test_data": "Reports/attachments",
+      "role": "owner",
+      "data_refs": [
+        "security_payloads"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-150",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Keyboard-only navigation",
+      "preconditions": "Any app page",
+      "source_test_data": "All interactive controls",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-151",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Visible focus indicator",
+      "preconditions": "Any app page",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-152",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Labels and error association",
+      "preconditions": "Forms/dialogs exist",
+      "source_test_data": "Login/signup/card/share forms",
+      "role": "owner",
+      "data_refs": [
+        "labels"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-153",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Modal focus management",
+      "preconditions": "Modal opens",
+      "source_test_data": "Dialog",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-154",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Color-independent status communication",
+      "preconditions": "Board/status colors visible",
+      "source_test_data": "All badges",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-155",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "High",
+      "scenario": "Screen reader semantics",
+      "preconditions": "Reports and cards available",
+      "source_test_data": "N/A",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-156",
+      "module": "Accessibility",
+      "submodule": "WCAG & Keyboard",
+      "type": "Accessibility",
+      "priority": "Medium",
+      "scenario": "Zoom to 200% and text spacing",
+      "preconditions": "Page zoom supported",
+      "source_test_data": "Key pages",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-157",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Responsive",
+      "priority": "Critical",
+      "scenario": "Kanban board on mobile",
+      "preconditions": "Authenticated user",
+      "source_test_data": "Mobile viewport",
+      "role": "owner",
+      "data_refs": [
+        "boards",
+        "viewports"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-158",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Responsive",
+      "priority": "High",
+      "scenario": "Tablet and desktop layouts",
+      "preconditions": "Authenticated user",
+      "source_test_data": "Viewport matrix",
+      "role": "owner",
+      "data_refs": [
+        "viewports"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-159",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Compatibility",
+      "priority": "High",
+      "scenario": "Cross-browser core journey",
+      "preconditions": "Test accounts available",
+      "source_test_data": "Chrome, Edge, Firefox, Safari",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-160",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Performance",
+      "priority": "Critical",
+      "scenario": "Initial dashboard/board load",
+      "preconditions": "Representative dataset",
+      "source_test_data": "Target dataset",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-161",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Performance",
+      "priority": "High",
+      "scenario": "Large Kanban performance",
+      "preconditions": "Board with 1k+ cards",
+      "source_test_data": "Large board",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-162",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Reliability",
+      "priority": "High",
+      "scenario": "Slow/offline network behavior",
+      "preconditions": "Network throttling available",
+      "source_test_data": "Slow 3G/offline",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-163",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Reliability",
+      "priority": "High",
+      "scenario": "Concurrent editing",
+      "preconditions": "Two users edit same card",
+      "source_test_data": "Same card",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-164",
+      "module": "Compatibility & Performance",
+      "submodule": "Cross-platform",
+      "type": "Localization",
+      "priority": "Medium",
+      "scenario": "Locale formatting",
+      "preconditions": "Browser locale/timezone configurable",
+      "source_test_data": "INR, dates, times",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-165",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "New QA owner onboarding journey",
+      "preconditions": "Unique email and plan capacity",
+      "source_test_data": "New account",
+      "role": "owner",
+      "data_refs": [
+        "boards"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-166",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "Defect lifecycle to closure",
+      "preconditions": "Owner and Team member exist",
+      "source_test_data": "Seeded defect",
+      "role": "team",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-167",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "Client collaboration journey",
+      "preconditions": "Owner and Client exist",
+      "source_test_data": "Client role",
+      "role": "client",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-168",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "External issue push journey",
+      "preconditions": "Integration configured",
+      "source_test_data": "ClickUp/GitHub",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-169",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "High",
+      "scenario": "Management reporting journey",
+      "preconditions": "Reportable data exists",
+      "source_test_data": "Known dataset",
+      "role": "owner",
+      "data_refs": [
+        "report_periods"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-170",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "Archive and restore preservation",
+      "preconditions": "Owner with active board and data",
+      "source_test_data": "Existing board",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-171",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "Plan upgrade boundary journey",
+      "preconditions": "Free user near all limits",
+      "source_test_data": "Free to Pro sandbox",
+      "role": "owner",
+      "data_refs": [
+        "text_boundaries"
+      ],
+      "values": {}
+    },
+    {
+      "case_id": "SNAG-TC-172",
+      "module": "End-to-End",
+      "submodule": "Business Journeys",
+      "type": "E2E",
+      "priority": "Critical",
+      "scenario": "Session routing regression",
+      "preconditions": "Authenticated session",
+      "source_test_data": "Valid user",
+      "role": "owner",
+      "data_refs": [],
+      "values": {}
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+"""Generate the committed 172-case data registry from the approved XLSX catalogue."""
+
+import argparse
+import json
+from pathlib import Path
+
+from openpyxl import load_workbook
+
+
+def infer_role(preconditions: str, scenario: str) -> str:
+    text = f"{preconditions} {scenario}".lower()
+    if "admin" in text:
+        return "admin"
+    if "client" in text:
+        return "client"
+    if "team" in text or "member" in text:
+        return "team"
+    if "other owner" in text or "unauthorized" in text:
+        return "other_owner"
+    return "owner"
+
+
+def infer_refs(module: str, test_type: str, scenario: str) -> list[str]:
+    text = f"{module} {test_type} {scenario}".lower()
+    refs = []
+    mapping = {
+        "authentication": "emails",
+        "password": "passwords",
+        "board": "boards",
+        "list": "lists",
+        "card": "cards",
+        "label": "labels",
+        "attachment": "attachments",
+        "responsive": "viewports",
+        "viewport": "viewports",
+        "report": "report_periods",
+        "integration": "integration_errors",
+        "security": "security_payloads",
+        "injection": "security_payloads",
+        "xss": "security_payloads",
+        "boundary": "text_boundaries",
+        "validation": "text_boundaries",
+    }
+    for needle, ref in mapping.items():
+        if needle in text and ref not in refs:
+            refs.append(ref)
+    return refs
+
+
+def generate(source: Path, output: Path) -> None:
+    sheet = load_workbook(source, read_only=True, data_only=True)["Test Cases"]
+    rows = sheet.iter_rows()
+    headers = [cell.value for cell in next(rows)]
+    index = {name: position for position, name in enumerate(headers)}
+    cases = []
+    for cells in rows:
+        row = tuple(cell.value for cell in cells)
+        if not row[index["Test Case ID"]]:
+            continue
+        module = str(row[index["Module"]] or "")
+        test_type = str(row[index["Type"]] or "")
+        scenario = str(row[index["Test Scenario"]] or "")
+        preconditions = str(row[index["Preconditions"]] or "")
+        cases.append({
+            "case_id": row[index["Test Case ID"]],
+            "module": module,
+            "submodule": row[index["Submodule"]],
+            "type": test_type,
+            "priority": row[index["Priority"]],
+            "scenario": scenario,
+            "preconditions": preconditions,
+            "source_test_data": str(row[index["Test Data"]] or ""),
+            "role": infer_role(preconditions, scenario),
+            "data_refs": infer_refs(module, test_type, scenario),
+            "values": {},
+        })
+    payload = {"schema_version": 1, "expected_count": len(cases), "cases": cases}
+    output.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Generated {len(cases)} case records in {output}")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("source", type=Path)
+    parser.add_argument("--output", type=Path, default=Path("test_data/cases.json"))
+    args = parser.parse_args()
+    generate(args.source, args.output)

@@ -1,0 +1,77 @@
+{
+  "users": {
+    "owner": {"role": "owner"},
+    "team": {"role": "team"},
+    "client": {"role": "client"},
+    "other_owner": {"role": "owner"},
+    "admin": {"role": "super_admin"}
+  },
+  "emails": {
+    "valid": ["qa.owner@example.test", "qa.team+automation@example.test"],
+    "invalid": ["", "plainaddress", "missing-at.example.com", "@example.com", "a@", "a b@example.com"],
+    "unknown": "unknown-user@example.test"
+  },
+  "passwords": {
+    "valid": ["ValidPassword1!", "Longer-Passphrase-2026!"],
+    "weak": ["", "short", "alllowercase1!", "ALLUPPERCASE1!", "NoNumber!", "NoSymbol123"]
+  },
+  "text_boundaries": {
+    "blank": "",
+    "whitespace": "   ",
+    "unicode": "QA defect – हिंदी – 日本語 – 🚀",
+    "html": "<b>visual defect</b>",
+    "long_100": "AaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaA",
+    "long_256": "XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX"
+  },
+  "security_payloads": {
+    "xss": ["<script>alert(1)</script>", "<img src=x onerror=alert(1)>", "javascript:alert(1)"],
+    "sql": ["' OR 1=1 --", "admin'/*", "1; DROP TABLE users--"],
+    "path": ["../../etc/passwd", "..\\..\\windows\\win.ini"],
+    "formula": ["=HYPERLINK(\"https://example.test\",\"click\")", "+SUM(1,1)", "@SUM(1,1)"]
+  },
+  "boards": {
+    "valid_names": ["E2E Mobile QA", "E2E Client Defects", "E2E Release Regression"],
+    "default_description": "Created by automated test execution and safe to remove.",
+    "background": "#006452"
+  },
+  "lists": {
+    "default": ["Backlog", "Open", "In Progress", "Review", "Closed"],
+    "custom": ["Blocked", "Ready for QA", "Released"]
+  },
+  "cards": {
+    "titles": ["E2E Checkout failure", "E2E Responsive navigation defect", "E2E Notification regression"],
+    "description": "Steps to reproduce:\n1. Open the affected screen\n2. Perform the action\n3. Observe the incorrect result",
+    "priorities": ["urgent", "high", "normal", "low"],
+    "severities": ["critical", "high", "medium", "low"],
+    "sources": ["internal", "client"]
+  },
+  "labels": [
+    {"name": "E2E UI", "color": "#0079bf"},
+    {"name": "E2E Regression", "color": "#61bd4f"},
+    {"name": "E2E Client Reported", "color": "#de350b"}
+  ],
+  "dates": {
+    "past_days": -1,
+    "future_days": 7,
+    "far_future_days": 90
+  },
+  "attachments": {
+    "valid": [
+      {"name": "e2e-evidence.txt", "mime": "text/plain", "size_bytes": 128},
+      {"name": "e2e-screenshot.png", "mime": "image/png", "size_bytes": 1024}
+    ],
+    "invalid": [
+      {"name": "malware.exe", "mime": "application/octet-stream", "size_bytes": 256},
+      {"name": "double-extension.jpg.html", "mime": "text/html", "size_bytes": 256}
+    ],
+    "oversize_bytes": 10485761
+  },
+  "viewports": [
+    {"name": "small-mobile", "width": 320, "height": 568},
+    {"name": "mobile", "width": 375, "height": 812},
+    {"name": "tablet", "width": 768, "height": 1024},
+    {"name": "desktop", "width": 1440, "height": 900}
+  ],
+  "report_periods": [7, 14, 30, 90],
+  "integration_errors": [401, 403, 429, 500, 502, 503, 504]
+}

@@ -59,7 +59,7 @@ snagly-playwright-automation/
 ├── config/settings.py               # Typed environment configuration
 ├── docs/                            # Traceability, catalogue and data guidance
 ├── pages/                           # Page Objects and shared interactions
-├── test_data/catalog.py             # Stable seeded users and records
+├── test_data/                       # 172-case registry and shared datasets
 ├── tests/api/                       # Public/authenticated API contracts
 ├── tests/e2e/                       # Browser journeys and responsive tests
 ├── utils/                           # Data, contract and accessibility helpers
@@ -94,8 +94,24 @@ snagly-playwright-automation/
 | `disposable_board` | Unique API-created board with teardown deletion |
 | `disposable_list` | List under the disposable board |
 | `disposable_card` | Unique card with teardown deletion |
+| `test_data_registry` | Validated catalogue for all 172 manual cases |
+| `case_data` | Automatically resolved data for the test's `case_id` marker |
+| `case_user` | Environment credentials for the role assigned to that case |
+| `test_file_factory` | Disposable exact-size attachment generator |
 
 `page_as(role)` creates separate browser contexts so cookies, local storage and permissions do not leak between role or concurrency scenarios.
+
+## Automatic test data
+
+Every manual case from `SNAG-TC-001` to `SNAG-TC-172` has a record in `test_data/cases.json`. Add a `case_id` marker and request `case_data`; pytest automatically combines that record with the required shared boundary/security values, fresh entity names, relative dates, temporary storage and credentials from environment variables.
+
+```python
+@pytest.mark.case_id("SNAG-TC-001")
+def test_landing_page(page, app_url, case_data):
+    assert case_data.module == "Landing Page"
+```
+
+`test_data/common.json` contains only safe, non-secret values. `test_data/registry.py` injects secrets and run-specific values on demand. The catalogue validates its count, ID format and complete sequence at startup. See [Automatic Test Data](docs/test-data.md) for usage, regeneration and lifecycle rules.
 
 ## Prerequisites
 

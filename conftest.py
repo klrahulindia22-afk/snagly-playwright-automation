@@ -1,14 +1,50 @@
 from collections.abc import Callable
+from pathlib import Path
 
 import pytest
 from playwright.sync_api import Browser, Page
 
 from config.settings import Settings
+from test_data.registry import CaseData, TestDataRegistry
+from utils.files import create_sized_file
 
 
 @pytest.fixture(scope="session")
 def settings() -> Settings:
     return Settings.from_environment()
+
+
+@pytest.fixture(scope="session")
+def test_data_registry() -> TestDataRegistry:
+    """Load and validate the complete manual-case data catalogue once per run."""
+    return TestDataRegistry()
+
+
+@pytest.fixture
+def case_data(request, test_data_registry: TestDataRegistry, settings: Settings, tmp_path: Path) -> CaseData:
+    """Resolve data automatically from the test's ``case_id`` marker."""
+    marker = request.node.get_closest_marker("case_id")
+    if marker is None or not marker.args:
+        pytest.fail("The case_data fixture requires @pytest.mark.case_id('SNAG-TC-###')")
+    return test_data_registry.for_case(str(marker.args[0]), settings, tmp_path)
+
+
+@pytest.fixture
+def case_user(case_data: CaseData) -> dict[str, str]:
+    """Return credentials for the role assigned to the current manual case."""
+    credentials = case_data.values["users"][case_data.role]
+    if not credentials["email"] or not credentials["password"]:
+        pytest.skip(f"Set {case_data.role.upper()} credentials in .env to run this test.")
+    return credentials
+
+
+@pytest.fixture
+def test_file_factory(tmp_path: Path):
+    """Create disposable attachment payloads without storing binaries in Git."""
+    def factory(name: str, size_bytes: int, content: bytes = b"E2E") -> Path:
+        return create_sized_file(tmp_path, name, size_bytes, content)
+
+    return factory
 
 
 @pytest.fixture
