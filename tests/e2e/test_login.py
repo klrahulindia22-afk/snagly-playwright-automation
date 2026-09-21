@@ -30,3 +30,15 @@ def test_login_requires_email_and_password(page, app_url):
 @pytest.mark.auth
 def test_user_can_log_in(authenticated_page):
     expect(authenticated_page).to_have_url("**/boards")
+
+
+@pytest.mark.auth
+@pytest.mark.regression
+@pytest.mark.parametrize("email", ["invalid", "missing-at.example.com", "@example.com"])
+def test_login_rejects_invalid_email_format(page, app_url, email):
+    login = LoginPage(page, app_url)
+    login.open()
+    login.email.fill(email)
+    login.password.fill("WrongPassword1!")
+    login.submit.click()
+    expect(page).to_have_url("**/login")

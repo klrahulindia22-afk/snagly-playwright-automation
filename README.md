@@ -4,6 +4,8 @@ This repository is the independent Python + Playwright quality-automation projec
 
 ## Framework coverage
 
+The framework now collects **55 executable tests** spanning public pages, authentication, boards, lists, cards, search, sharing, reports, notifications, profile, subscriptions and API security contracts. The supporting architecture maps all 172 manual cases and provides fixtures/utilities for the remaining sandbox-dependent journeys. See [automation-traceability.md](docs/automation-traceability.md).
+
 | Layer | Tooling | Purpose |
 |---|---|---|
 | Browser UI | Playwright + Page Objects | Validate real user workflows |
@@ -53,6 +55,12 @@ BASE_URL=http://localhost:5275
 API_BASE_URL=http://localhost:8000
 TEST_USER_EMAIL=owner@test.com
 TEST_USER_PASSWORD=Owner@1234
+TEAM_USER_EMAIL=team@test.com
+TEAM_USER_PASSWORD=Team@1234
+CLIENT_USER_EMAIL=client@test.com
+CLIENT_USER_PASSWORD=Client@1234
+OTHER_OWNER_EMAIL=other@test.com
+OTHER_OWNER_PASSWORD=Other@1234
 HEADLESS=true
 ~~~
 
@@ -90,6 +98,12 @@ pytest -m auth --browser chromium
 
 # Backend/API checks only
 pytest -m api
+
+# Public deployed-site checks (no credentials)
+pytest -m public --browser chromium
+
+# Non-destructive regression checks
+pytest -m "regression and not destructive" --browser chromium
 
 # Complete suite with reports and failure evidence
 pytest --browser chromium --tracing retain-on-failure --screenshot only-on-failure \
@@ -177,6 +191,7 @@ GitHub-hosted runners cannot access a laptop's localhost. Use a reachable stagin
 | SNAGLY_BASE_URL | Staging/test frontend URL |
 | SNAGLY_TEST_USER_EMAIL | Dedicated automation account |
 | SNAGLY_TEST_USER_PASSWORD | Dedicated automation-account password |
+| SNAGLY_API_BASE_URL | Reachable FastAPI test/staging URL |
 
 The included workflow runs on main-branch pushes, pull requests and manual dispatch. It uploads test evidence after execution.
 

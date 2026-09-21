@@ -16,7 +16,16 @@ class Settings:
     test_user_password: str
     admin_email: str
     admin_password: str
+    team_user_email: str
+    team_user_password: str
+    client_user_email: str
+    client_user_password: str
+    other_owner_email: str
+    other_owner_password: str
     headless: bool
+    default_timeout_ms: int
+    navigation_timeout_ms: int
+    test_run_id: str
 
     @classmethod
     def from_environment(cls) -> "Settings":
@@ -27,5 +36,14 @@ class Settings:
             test_user_password=os.getenv("TEST_USER_PASSWORD", ""),
             admin_email=os.getenv("ADMIN_EMAIL", ""),
             admin_password=os.getenv("ADMIN_PASSWORD", ""),
+            team_user_email=os.getenv("TEAM_USER_EMAIL", ""),
+            team_user_password=os.getenv("TEAM_USER_PASSWORD", ""),
+            client_user_email=os.getenv("CLIENT_USER_EMAIL", ""),
+            client_user_password=os.getenv("CLIENT_USER_PASSWORD", ""),
+            other_owner_email=os.getenv("OTHER_OWNER_EMAIL", ""),
+            other_owner_password=os.getenv("OTHER_OWNER_PASSWORD", ""),
             headless=os.getenv("HEADLESS", "true").lower() in {"1", "true", "yes"},
+            default_timeout_ms=int(os.getenv("DEFAULT_TIMEOUT_MS", "10000")),
+            navigation_timeout_ms=int(os.getenv("NAVIGATION_TIMEOUT_MS", "20000")),
+            test_run_id=os.getenv("TEST_RUN_ID", "local"),
         )

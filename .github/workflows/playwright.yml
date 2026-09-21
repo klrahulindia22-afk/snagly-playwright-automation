@@ -1,4 +1,4 @@
-name: Playwright smoke tests
+name: Playwright quality gates
 
 on:
   workflow_dispatch:
@@ -13,6 +13,7 @@ jobs:
     if: ${{ secrets.SNAGLY_BASE_URL != '' }}
     env:
       BASE_URL: ${{ secrets.SNAGLY_BASE_URL }}
+      API_BASE_URL: ${{ secrets.SNAGLY_API_BASE_URL }}
       TEST_USER_EMAIL: ${{ secrets.SNAGLY_TEST_USER_EMAIL }}
       TEST_USER_PASSWORD: ${{ secrets.SNAGLY_TEST_USER_PASSWORD }}
     steps:
@@ -26,11 +27,36 @@ jobs:
           pip install -r requirements.txt
           playwright install --with-deps chromium
       - name: Run smoke tests
-        run: pytest -m smoke --browser chromium --tracing retain-on-failure --screenshot only-on-failure
+        run: pytest -m smoke --browser chromium --tracing retain-on-failure --screenshot only-on-failure --junitxml=reports/smoke-junit.xml --html=reports/smoke.html --self-contained-html
       - name: Upload test evidence
         if: ${{ !cancelled() }}
         uses: actions/upload-artifact@v4
         with:
           name: playwright-evidence
-          path: test-results/
+          path: |
+            test-results/
+            reports/
+          if-no-files-found: ignore
+
+  api-contracts:
+    runs-on: ubuntu-latest
+    if: ${{ secrets.SNAGLY_API_BASE_URL != '' }}
+    env:
+      BASE_URL: ${{ secrets.SNAGLY_BASE_URL }}
+      API_BASE_URL: ${{ secrets.SNAGLY_API_BASE_URL }}
+      TEST_USER_EMAIL: ${{ secrets.SNAGLY_TEST_USER_EMAIL }}
+      TEST_USER_PASSWORD: ${{ secrets.SNAGLY_TEST_USER_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Run API contract suite
+        run: pytest -m api --junitxml=reports/api-junit.xml --html=reports/api.html --self-contained-html
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: api-contract-evidence
+          path: reports/
           if-no-files-found: ignore
