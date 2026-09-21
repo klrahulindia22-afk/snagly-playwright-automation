@@ -1,228 +1,442 @@
-# Snagly Automation Framework
+# Snagly Playwright Automation Framework
 
-This repository is the independent Python + Playwright quality-automation project for Snagly. It tests the live React interface and FastAPI backend without copying application source code or storing production credentials.
+Production-grade Python, Playwright and pytest automation for the Snagly bug-reporting and client-communication platform.
 
-## Framework coverage
+The framework validates the React/Vite web application and FastAPI backend through browser journeys, API contracts, role-based sessions and deterministic test data. It is maintained separately from the application repository so test code, reports and credentials remain isolated from product code.
 
-The framework now collects **55 executable tests** spanning public pages, authentication, boards, lists, cards, search, sharing, reports, notifications, profile, subscriptions and API security contracts. The supporting architecture maps all 172 manual cases and provides fixtures/utilities for the remaining sandbox-dependent journeys. See [automation-traceability.md](docs/automation-traceability.md).
+## Current status
 
-| Layer | Tooling | Purpose |
+| Item | Current implementation |
+|---|---|
+| Manual test inventory | 172 cases across 17 modules |
+| Executable automated checks | 55 collected tests |
+| UI automation | Playwright Page Object Model |
+| API automation | Playwright `APIRequestContext` wrapper |
+| Test runner | pytest 8 |
+| Browsers | Chromium, Firefox and WebKit |
+| Parallel execution | pytest-xdist |
+| Reports | HTML, JUnit XML, screenshots, video and Playwright traces |
+| CI | GitHub Actions UI smoke and API contract jobs |
+
+See [Automation Traceability](docs/automation-traceability.md) for the manual-to-automation mapping. Email delivery, payments, external issue creation, file storage, multi-user concurrency and destructive security testing require dedicated sandbox services.
+
+## Application coverage
+
+1. Landing page and navigation
+2. Signup, login, logout, password reset and sessions
+3. Pricing, plans, subscriptions and invoices
+4. Boards, archived boards and Kanban lists
+5. Cards, priority, severity, source and due dates
+6. Labels, assignees, attachments and metadata
+7. Global search and board filters
+8. Invitations, share links, join requests and RBAC
+9. Board and global reports
+10. Notifications and preferences
+11. Profile, password, theme and digest preferences
+12. ClickUp/GitHub integration contracts
+13. Security, accessibility and responsive checks
+14. Cross-browser and end-to-end journeys
+
+## Technology stack
+
+| Component | Technology | Responsibility |
 |---|---|---|
-| Browser UI | Playwright + Page Objects | Validate real user workflows |
-| Backend API | Playwright request context | Verify FastAPI responses and controlled setup |
-| Test data | Idempotent seed + catalog | Stable roles, boards, cards, labels, comments and checklists |
-| Reporting | JUnit, HTML, traces, screenshots and video | Failure evidence for developers |
-| CI | GitHub Actions | Smoke checks against a reachable test/staging environment |
+| UI automation | Playwright for Python | Browser workflows, assertions and evidence |
+| API automation | Playwright request context | API contracts and setup/cleanup |
+| Runner | pytest | Fixtures, markers and parametrization |
+| Parallelism | pytest-xdist | Isolated concurrent execution |
+| Configuration | python-dotenv | Environment loading |
+| Validation | Ruff and compileall | Static quality checks |
+| Reporting | pytest-html and JUnit | Human and CI reports |
+| Schema support | jsonschema | Structured response validation |
 
-## Repository layout
+## Framework architecture
 
-~~~text
-clients/        API wrappers; no UI selectors
-config/         Environment configuration only
-pages/          Page Objects: locators and user interactions
-test_data/      Stable names for controlled test records
-tests/api/      Fast backend/API contract checks
-tests/e2e/      Browser journeys and permission scenarios
-docs/           Test-data and framework documentation
-.github/        CI workflow
-conftest.py     Shared fixtures, timeouts and browser/API contexts
-~~~
+```text
+snagly-playwright-automation/
+├── .github/workflows/playwright.yml # UI smoke and API quality gates
+├── clients/snagly_api.py            # Central authenticated API wrapper
+├── config/settings.py               # Typed environment configuration
+├── docs/                            # Traceability, catalogue and data guidance
+├── pages/                           # Page Objects and shared interactions
+├── test_data/catalog.py             # Stable seeded users and records
+├── tests/api/                       # Public/authenticated API contracts
+├── tests/e2e/                       # Browser journeys and responsive tests
+├── utils/                           # Data, contract and accessibility helpers
+├── conftest.py                      # Shared UI/API/RBAC/data fixtures
+├── pytest.ini                       # Markers and pytest defaults
+├── requirements.txt
+└── ruff.toml
+```
+
+### Design rules
+
+- Tests contain business intent; Page Objects contain selectors and interactions.
+- API helpers create and clean up state; UI tests validate user-visible behavior.
+- Prefer accessible roles, labels and placeholders over CSS classes.
+- Obtain IDs from API responses; never hard-code database IDs.
+- Generated records start with `E2E-` and include a unique run suffix.
+- Keep tests independent, repeatable and safe to retry.
+- Never commit credentials, tokens, production data or payment details.
+- Do not use `time.sleep()`; use Playwright assertions and state waits.
+
+## Fixtures
+
+| Fixture | Purpose |
+|---|---|
+| `settings` | Session-scoped typed environment configuration |
+| `app_url` | Configured frontend address |
+| `page` | pytest-playwright browser page |
+| `authenticated_page` | Owner session authenticated through UI |
+| `page_as(role)` | Isolated Admin, Owner, Team, Client or Other Owner session |
+| `api_client` | Fresh anonymous API request context |
+| `authenticated_api` | Authenticated `SnaglyApi` client |
+| `disposable_board` | Unique API-created board with teardown deletion |
+| `disposable_list` | List under the disposable board |
+| `disposable_card` | Unique card with teardown deletion |
+
+`page_as(role)` creates separate browser contexts so cookies, local storage and permissions do not leak between role or concurrency scenarios.
 
 ## Prerequisites
 
 - Python 3.12+
-- Node.js 20+ to run the Snagly UI
-- Snagly frontend, FastAPI backend and a dedicated MySQL test database
-- A dedicated test account. Never use a personal or production account.
+- Git
+- Reachable Snagly frontend and FastAPI backend
+- Chromium for development; Firefox and WebKit for release validation
+- Dedicated test/staging accounts and database
+- Node.js 20+ only when running Snagly locally
 
-## Local installation
+Do not point destructive or data-creation tests at production.
 
-~~~bash
+## Installation
+
+### macOS or Linux
+
+```bash
 git clone https://github.com/klrahulindia22-afk/snagly-playwright-automation.git
 cd snagly-playwright-automation
-python -m venv .venv
-source .venv/bin/activate              # Windows: .venv\Scripts\Activate.ps1
+python3 -m venv .venv
+source .venv/bin/activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt
 playwright install chromium
 cp .env.example .env
-~~~
+```
 
-Configure .env:
+### Windows PowerShell
 
-~~~dotenv
+```powershell
+git clone https://github.com/klrahulindia22-afk/snagly-playwright-automation.git
+cd snagly-playwright-automation
+py -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+playwright install chromium
+Copy-Item .env.example .env
+```
+
+For cross-browser execution:
+
+```bash
+playwright install chromium firefox webkit
+```
+
+## Environment configuration
+
+Copy `.env.example` to `.env`. The `.env` file is ignored by Git.
+
+```dotenv
 BASE_URL=http://localhost:5275
 API_BASE_URL=http://localhost:8000
-TEST_USER_EMAIL=owner@test.com
-TEST_USER_PASSWORD=Owner@1234
-TEAM_USER_EMAIL=team@test.com
-TEAM_USER_PASSWORD=Team@1234
-CLIENT_USER_EMAIL=client@test.com
-CLIENT_USER_PASSWORD=Client@1234
-OTHER_OWNER_EMAIL=other@test.com
-OTHER_OWNER_PASSWORD=Other@1234
+
+TEST_USER_EMAIL=
+TEST_USER_PASSWORD=
+TEAM_USER_EMAIL=
+TEAM_USER_PASSWORD=
+CLIENT_USER_EMAIL=
+CLIENT_USER_PASSWORD=
+OTHER_OWNER_EMAIL=
+OTHER_OWNER_PASSWORD=
+ADMIN_EMAIL=
+ADMIN_PASSWORD=
+
 HEADLESS=true
-~~~
+DEFAULT_TIMEOUT_MS=10000
+NAVIGATION_TIMEOUT_MS=20000
+TEST_RUN_ID=local
+```
 
-BASE_URL is the React UI and API_BASE_URL is the FastAPI backend. Keep them separate. The .env file is ignored by Git and must never be committed.
+| Variable | Required | Description |
+|---|---:|---|
+| `BASE_URL` | UI suites | React frontend URL |
+| `API_BASE_URL` | API/data fixtures | FastAPI backend origin |
+| `TEST_USER_*` | Authenticated suites | Dedicated Board Owner account |
+| `TEAM_USER_*` | Permission suites | Team-member account |
+| `CLIENT_USER_*` | Permission suites | Client account |
+| `OTHER_OWNER_*` | Isolation suites | Owner of a separate board |
+| `ADMIN_*` | Admin suites | Super Admin account |
+| `HEADLESS` | No | `true` hides the browser; `false` shows it |
+| `DEFAULT_TIMEOUT_MS` | No | Locator/assertion timeout; default 10 seconds |
+| `NAVIGATION_TIMEOUT_MS` | No | Navigation timeout; default 20 seconds |
+| `TEST_RUN_ID` | No | CI/build ID included in generated data |
 
-## Prepare application test data
+`BASE_URL` and `API_BASE_URL` are intentionally separate because the Vite frontend and FastAPI backend may use different origins.
 
-Use a dedicated test database only:
+## Local Snagly environment
 
-~~~bash
+Use a dedicated test database. From the Snagly application repository:
+
+```bash
 cd backend
 export TEST_DB_URL='mysql+aiomysql://USER:PASSWORD@localhost:3306/snagly_test'
 python -m tests.seed
 uvicorn main:app --reload --port 8000
-~~~
+```
 
 In another terminal:
 
-~~~bash
+```bash
 cd frontend
 npm install
 npm run dev -- --port 5275
-~~~
+```
 
-The seed creates verified role-based users; the Test Board; Backlog, In Progress, Review and Done columns; cards across states; labels; assignees; comments; and checklist data. See [test-data.md](docs/test-data.md) for the complete catalog.
+The seed should provide verified Owner, Team, Client, Other Owner and Super Admin accounts plus stable boards, columns, cards, labels, comments and checklists. See [Test Data](docs/test-data.md).
 
-## Run tests
+## Running tests
 
-~~~bash
-# Critical checks, visible Chromium
-pytest -m smoke --browser chromium --headed
+### Fast quality checks
 
-# Authentication checks
-pytest -m auth --browser chromium
+```bash
+python -m compileall -q conftest.py clients config pages test_data tests utils
+python -m ruff check .
+pytest --collect-only -q
 
-# Backend/API checks only
-pytest -m api
-
-# Public deployed-site checks (no credentials)
+pytest -m smoke --browser chromium
 pytest -m public --browser chromium
+pytest -m api
+```
 
-# Non-destructive regression checks
+### Module suites
+
+```bash
+pytest -m auth --browser chromium
+pytest -m boards --browser chromium
+pytest -m cards --browser chromium
+pytest -m permissions --browser chromium
+pytest -m reports --browser chromium
+pytest -m notifications --browser chromium
+pytest -m profile --browser chromium
+pytest -m security
+pytest -m responsive --browser chromium
+```
+
+### Regression and evidence
+
+```bash
 pytest -m "regression and not destructive" --browser chromium
 
-# Complete suite with reports and failure evidence
-pytest --browser chromium --tracing retain-on-failure --screenshot only-on-failure \
-  --video retain-on-failure --junitxml=reports/junit.xml \
-  --html=reports/report.html --self-contained-html
+pytest --browser chromium \
+  --tracing retain-on-failure \
+  --screenshot only-on-failure \
+  --video retain-on-failure \
+  --junitxml=reports/junit.xml \
+  --html=reports/report.html \
+  --self-contained-html
 
-# Parallel smoke suite: use only when data isolation is assured
-pytest -n auto -m smoke --browser chromium
+pytest tests/e2e/test_login.py --browser chromium --headed --slowmo 300
+```
 
-# Cross-browser release checks
+### Cross-browser and parallel execution
+
+```bash
 pytest -m smoke --browser chromium
 pytest -m smoke --browser firefox
 pytest -m smoke --browser webkit
-~~~
 
-Inspect a failed Playwright trace:
+pytest -n auto -m "regression and not serial" --browser chromium
+```
 
-~~~bash
-playwright show-trace test-results/<test-folder>/trace.zip
-~~~
-
-## Test-data governance
-
-Stable seed-data names are defined in test_data/catalog.py. Use these names rather than numeric database IDs.
-
-| Role | Coverage |
-|---|---|
-| Super Admin | Admin panel, users, plans and limits |
-| Board Owner | Boards, membership and full card management |
-| Team Member | Bug updates, comments, assignment and movement |
-| Client | Permitted bug access and restrictions |
-| Other Owner | Negative board-isolation scenarios |
-
-Seed records are read-only. New data must start with E2E- plus a unique run suffix and must be removed in teardown.
-
-## How to add a UI test
-
-1. Confirm the feature requirement and expected behaviour for every relevant role.
-2. Add locators and actions in the applicable Page Object under pages/.
-3. Use accessible role/name selectors. If an element lacks a unique accessible identity, ask development to add a data-testid. Do not use CSS classes or nth selectors.
-4. Write the business scenario in tests/e2e/, with correct pytest markers.
-5. Use API helpers only for setup/cleanup; validate the business action through the UI.
-6. Run the focused test, then the related smoke or regression group.
-
-Example:
-
-~~~python
-@pytest.mark.boards
-@pytest.mark.regression
-def test_owner_can_create_a_board(authenticated_page):
-    boards = BoardsPage(authenticated_page)
-    boards.create_board("E2E-Release-board")
-    expect(authenticated_page.get_by_text("E2E-Release-board")).to_be_visible()
-~~~
-
-## How to add an API test
-
-Use clients/snagly_api.py, not repeated raw HTTP logic. Every API test must assert status and response contract, including negative permission cases.
-
-~~~python
-@pytest.mark.api
-def test_plans_response_contains_data(api_client):
-    response = SnaglyApi(api_client).get_public_plans()
-    expect(response).to_be_ok()
-    assert "data" in response.json()
-~~~
+Use parallel execution only when data is isolated. Shared records and provider integrations should use the `serial` marker.
 
 ## Markers
 
-| Marker | Meaning |
+| Marker | Scope |
 |---|---|
-| smoke | Mandatory high-value deployment checks |
-| auth | Signup, login, reset password and 2FA |
-| boards | Board, list, card and Kanban workflows |
-| permissions | Owner, Team, Client and Admin access rules |
-| api | FastAPI endpoint and response-contract checks |
-| regression | Broader pre-release/nightly coverage |
+| `smoke` | Critical deployment checks |
+| `regression` | Broader functional regression |
+| `public` | Landing, pricing and account-entry pages |
+| `auth` | Signup, login, reset, sessions and 2FA |
+| `boards` | Board, list and Kanban workflows |
+| `cards` | Card lifecycle and metadata |
+| `permissions` | Owner, Team, Client and Admin RBAC |
+| `reports` | Dashboards and exports |
+| `notifications` | Notifications and preferences |
+| `profile` | User profile and preferences |
+| `integrations` | Provider configuration and issue push |
+| `api` | Backend contracts |
+| `security` | Authentication/authorization regression |
+| `accessibility` | Accessibility-focused checks |
+| `responsive` | Viewport and reflow checks |
+| `destructive` | Permanent deletion or mutation |
+| `serial` | Must not run concurrently |
 
-## CI/CD configuration
+Examples:
 
-GitHub-hosted runners cannot access a laptop's localhost. Use a reachable staging/test environment and add these repository secrets:
+```bash
+pytest -m "smoke and not destructive"
+pytest -m "api and security"
+pytest -m "boards or cards"
+```
+
+## Adding automation
+
+### UI test
+
+1. Add selectors and interactions under `pages/`.
+2. Use API fixtures for setup and cleanup.
+3. Keep outcome assertions in the test.
+4. Add functional and execution markers.
+5. Run the focused test, module suite and smoke suite.
+
+```python
+import pytest
+from playwright.sync_api import expect
+
+from pages.board_page import BoardPage
+
+
+@pytest.mark.boards
+@pytest.mark.cards
+def test_api_created_card_is_visible(authenticated_page, app_url, disposable_board, disposable_card):
+    board = BoardPage(authenticated_page, app_url)
+    board.open_by_id(disposable_board["id"])
+    expect(authenticated_page.get_by_text(disposable_card["title"], exact=True)).to_be_visible()
+```
+
+### API test
+
+Extend `clients/snagly_api.py` rather than duplicating endpoint calls.
+
+```python
+import pytest
+
+from utils.contracts import assert_collection
+
+
+@pytest.mark.api
+@pytest.mark.boards
+def test_boards_contract(authenticated_api):
+    boards = assert_collection(authenticated_api.get_boards())
+    for board in boards:
+        assert {"id", "name", "slug", "my_role"}.issubset(board)
+```
+
+### Test-data rules
+
+- Use stable catalog values for read-only assertions.
+- Use `unique_name()` for created records.
+- Never depend on numeric IDs.
+- Clean data in fixture teardown even after failures.
+- Keep destructive tests out of normal smoke runs.
+
+## Reports and debugging
+
+| Artifact | Purpose |
+|---|---|
+| HTML | Human-readable execution summary |
+| JUnit XML | CI reporting |
+| Screenshot | UI state on failure |
+| Video | Failed browser session |
+| Trace | DOM, network, console and action timeline |
+
+```bash
+playwright show-trace test-results/<test-folder>/trace.zip
+pytest path/to/test.py::test_name --headed --slowmo 500 -s
+pytest path/to/test.py::test_name --tracing on
+pytest -x --tb=long
+```
+
+## CI/CD
+
+`.github/workflows/playwright.yml` contains:
+
+| Job | Purpose | Requirement |
+|---|---|---|
+| `smoke` | Chromium UI smoke with evidence | Frontend URL and Owner credentials |
+| `api-contracts` | API contracts and reports | Backend URL and Owner credentials |
+
+Configure GitHub Actions secrets:
 
 | Secret | Purpose |
 |---|---|
-| SNAGLY_BASE_URL | Staging/test frontend URL |
-| SNAGLY_TEST_USER_EMAIL | Dedicated automation account |
-| SNAGLY_TEST_USER_PASSWORD | Dedicated automation-account password |
-| SNAGLY_API_BASE_URL | Reachable FastAPI test/staging URL |
+| `SNAGLY_BASE_URL` | Reachable test/staging frontend |
+| `SNAGLY_API_BASE_URL` | Reachable FastAPI backend |
+| `SNAGLY_TEST_USER_EMAIL` | Dedicated Owner automation account |
+| `SNAGLY_TEST_USER_PASSWORD` | Owner password |
 
-The included workflow runs on main-branch pushes, pull requests and manual dispatch. It uploads test evidence after execution.
+The workflow runs on pushes to `main`, pull requests and manual dispatch. GitHub-hosted runners cannot access localhost or a developer laptop.
 
-## Quality standards
+## Quality gates
 
-- Never commit credentials, production data, payment details, API tokens or sensitive screenshots.
-- Never use time.sleep(); wait for visible product state with Playwright assertions.
-- Keep every test independent, repeatable and safe to retry.
-- Prefer API setup plus UI verification to reduce slow browser preparation.
-- Keep Page Objects for interactions and tests for business intent.
-- Preserve a trace, screenshot, video and JUnit result for failures.
-- Run ruff check . and python -m compileall -q conftest.py clients config pages test_data tests before a pull request.
+Before committing:
 
-## Coverage roadmap
+```bash
+python -m compileall -q conftest.py clients config pages test_data tests utils
+python -m ruff check .
+pytest --collect-only -q
+```
 
-1. Authentication and session handling.
-2. Board/list/card CRUD, filters and drag/drop.
-3. Labels, assignees, attachments, comments, checklists, due dates and custom fields.
-4. Role permissions and client data isolation.
-5. Dashboards, notifications, export/import, templates, integrations and SLA rules.
-6. Subscription/payment sandbox and admin workflows.
-7. Accessibility, responsive UI, cross-browser, performance and security regression checks.
+A change is complete when tests collect, lint and compilation pass; data is isolated and cleaned; no secrets or reports are tracked; and Page Objects, clients, fixtures, tests and documentation remain aligned.
+
+## Environment-dependent coverage
+
+| Area | Dependency |
+|---|---|
+| Signup/reset email | Test mailbox or email capture |
+| Multi-role permissions | Owner, Team, Client and Other Owner accounts |
+| Attachments | Isolated object storage and permitted files |
+| CSV/PDF export | Downloads and deterministic data |
+| ClickUp/GitHub push | Provider sandbox and scoped token |
+| Subscriptions | Stripe/Razorpay sandbox |
+| Admin workflows | Super Admin account |
+| WebSocket/concurrency | Two isolated contexts |
+| Load/performance | Dedicated load environment |
+| Full security testing | Explicitly authorized environment |
 
 ## Troubleshooting
 
-| Issue | Check |
+| Problem | Resolution |
 |---|---|
-| Browser cannot connect | URLs in .env and running frontend/backend processes |
-| Login rejected | Active verified test account and correct seed database |
-| API tests fail locally | API_BASE_URL, backend port and CORS settings |
-| CI is skipped | SNAGLY_BASE_URL is missing; GitHub cannot access localhost |
-| Flaky result | Inspect trace/screenshot, then improve selector or state wait |
+| Browser executable missing | Run `playwright install chromium` |
+| Browser cannot reach site | Verify URL, DNS, VPN/proxy and environment availability |
+| API tests fail immediately | Verify backend URL, health and network access |
+| Auth tests are skipped | Configure Owner credentials |
+| Role test is skipped | Configure that role in `.env` |
+| Login is rejected | Confirm account is verified and 2FA is disabled for automation |
+| Plan limit blocks fixture | Use a suitable test plan or remove stale `E2E-` data |
+| CI job is skipped | Configure the required URL secret |
+| Locator fails after release | Inspect trace and update the Page Object |
+| Parallel test is flaky | Isolate data or use `serial` |
+| Export fails | Verify downloads and backend storage |
 
-When a product feature changes, update the Page Object, test data, scenario and relevant documentation in the same pull request.
+## Security and safety
+
+- Use dedicated automation accounts and sandbox integrations.
+- Never automate using personal or production credentials.
+- Never commit `.env`, tokens, passwords or customer files.
+- Keep provider tokens least-privileged and rotate them regularly.
+- Treat screenshots, traces and videos as potentially sensitive.
+- Require explicit authorization for destructive, security or load testing.
+
+## Related resources
+
+- [Snagly application](https://github.com/klrahulindia22-afk/snagly)
+- [Automation repository](https://github.com/klrahulindia22-afk/snagly-playwright-automation)
+- [Automation Traceability](docs/automation-traceability.md)
+- [Test Data](docs/test-data.md)
+- [Test Case Catalogue](docs/test-case-catalogue.md)
+- [Live Deployment Test Cases](docs/live-deployment-test-cases.md)
+
+When behavior changes, update the Page Object, API client, fixtures/data, automated tests and documentation together.
