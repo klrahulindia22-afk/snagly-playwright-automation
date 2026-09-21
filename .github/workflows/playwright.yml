@@ -36,7 +36,7 @@ jobs:
           pytest tests/unit -q
           pytest --collect-only -q --traceability-output=reports/traceability
       - name: Upload traceability
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: automation-traceability
           path: reports/traceability.*
@@ -83,7 +83,7 @@ jobs:
         run: pytest -m api --junitxml=reports/api-junit.xml --html=reports/api.html --self-contained-html
       - name: Upload API evidence
         if: ${{ !cancelled() && steps.config.outputs.ready == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: api-contract-evidence
           path: reports/
@@ -140,7 +140,7 @@ jobs:
           --html=reports/smoke-${{ matrix.browser }}.html --self-contained-html
       - name: Upload UI evidence
         if: ${{ !cancelled() && steps.config.outputs.ready == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ui-${{ matrix.browser }}-evidence
           path: |
@@ -187,7 +187,7 @@ jobs:
           pytest -m smoke --browser ${{ matrix.browser }}
           --tracing retain-on-failure --screenshot only-on-failure
           --junitxml=reports/smoke-${{ matrix.browser }}.xml
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: nightly-${{ matrix.browser }}-evidence
@@ -231,7 +231,7 @@ jobs:
           pytest -m "regression and not destructive" --browser chromium
           --tracing retain-on-failure --screenshot only-on-failure --video retain-on-failure
           --junitxml=reports/regression.xml --html=reports/regression.html --self-contained-html
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: nightly-regression-evidence
