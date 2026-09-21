@@ -20,6 +20,7 @@ def test_landing_page_core_navigation(page, app_url, case_data):
 
 @pytest.mark.public
 @pytest.mark.regression
+@pytest.mark.case_id("SNAG-TC-030")
 def test_pricing_lists_all_plans(page, app_url):
     pricing = PricingPage(page, app_url)
     pricing.open()
@@ -29,6 +30,7 @@ def test_pricing_lists_all_plans(page, app_url):
 
 @pytest.mark.public
 @pytest.mark.auth
+@pytest.mark.case_id("SNAG-TC-020")
 def test_signup_form_fields(page, app_url):
     signup = SignupPage(page, app_url)
     signup.open()
@@ -40,6 +42,7 @@ def test_signup_form_fields(page, app_url):
 
 @pytest.mark.public
 @pytest.mark.auth
+@pytest.mark.case_id("SNAG-TC-024")
 def test_forgot_password_form(page, app_url):
     forgot = ForgotPasswordPage(page, app_url)
     forgot.open()
@@ -48,6 +51,7 @@ def test_forgot_password_form(page, app_url):
 
 @pytest.mark.public
 @pytest.mark.responsive
+@pytest.mark.case_id("SNAG-TC-008")
 @pytest.mark.parametrize("width,height", [(320, 568), (375, 812), (768, 1024), (1440, 900)])
 def test_landing_page_reflows(page, app_url, width, height):
     page.set_viewport_size({"width": width, "height": height})

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["id", "name", "slug", "my_role", "member_count"],
+    "properties": {
+      "id": {"type": ["integer", "string"]},
+      "name": {"type": "string", "minLength": 1},
+      "slug": {"type": "string", "minLength": 1},
+      "my_role": {"type": "string"},
+      "member_count": {"type": "integer", "minimum": 0}
+    },
+    "additionalProperties": true
+  }
+}

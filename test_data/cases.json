@@ -12,6 +12,7 @@
       "preconditions": "User is logged out",
       "source_test_data": "Public URL",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -25,6 +26,7 @@
       "preconditions": "User is logged out",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -38,6 +40,7 @@
       "preconditions": "User is logged out",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -51,6 +54,7 @@
       "preconditions": "User is logged out",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -64,7 +68,11 @@
       "preconditions": "Landing page loaded",
       "source_test_data": "Smart Filters, Integrations, Dashboard, Auto-capture",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "boards",
+        "integration_errors"
+      ],
       "values": {}
     },
     {
@@ -77,6 +85,7 @@
       "preconditions": "Landing page loaded",
       "source_test_data": "Any visible demo card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "cards"
@@ -93,6 +102,7 @@
       "preconditions": "None",
       "source_test_data": "Latest two versions",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -106,6 +116,7 @@
       "preconditions": "None",
       "source_test_data": "Viewport matrix",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "viewports"
       ],
@@ -121,6 +132,7 @@
       "preconditions": "Registered active user exists",
       "source_test_data": "Valid user",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails"
       ],
@@ -136,6 +148,7 @@
       "preconditions": "Registered user exists",
       "source_test_data": "Wrong password",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords"
@@ -152,6 +165,7 @@
       "preconditions": "None",
       "source_test_data": "unknown@example.com",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails"
       ],
@@ -167,6 +181,7 @@
       "preconditions": "None",
       "source_test_data": "Blank values",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "text_boundaries"
@@ -183,6 +198,7 @@
       "preconditions": "None",
       "source_test_data": "abc, a@, @b.com",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "text_boundaries"
@@ -199,6 +215,7 @@
       "preconditions": "None",
       "source_test_data": "' OR 1=1 --, <script>alert(1)</script>",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "security_payloads"
@@ -215,6 +232,7 @@
       "preconditions": "Login page loaded",
       "source_test_data": "Strong password",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords"
@@ -231,6 +249,7 @@
       "preconditions": "User successfully logs in",
       "source_test_data": "Valid user",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "security_payloads"
@@ -247,6 +266,7 @@
       "preconditions": "Authenticated session exists",
       "source_test_data": "Protected URLs",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "security_payloads"
@@ -263,6 +283,7 @@
       "preconditions": "Authenticated user",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails"
       ],
@@ -278,6 +299,7 @@
       "preconditions": "Email is unused",
       "source_test_data": "Valid unique user",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails"
       ],
@@ -293,6 +315,7 @@
       "preconditions": "None",
       "source_test_data": "Blank values",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "text_boundaries"
@@ -309,6 +332,7 @@
       "preconditions": "None",
       "source_test_data": "Password1! / Password2!",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords",
@@ -326,6 +350,7 @@
       "preconditions": "None",
       "source_test_data": "short, no number, no symbol",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords",
@@ -343,6 +368,7 @@
       "preconditions": "Email already registered",
       "source_test_data": "Existing email",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails"
       ],
@@ -358,6 +384,7 @@
       "preconditions": "Registered email exists",
       "source_test_data": "Registered email",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords"
@@ -374,6 +401,7 @@
       "preconditions": "None",
       "source_test_data": "Two emails",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords",
@@ -391,6 +419,7 @@
       "preconditions": "Valid reset link exists",
       "source_test_data": "Strong new password",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "passwords",
@@ -408,6 +437,7 @@
       "preconditions": "Expired/used reset token exists",
       "source_test_data": "Expired token",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
         "security_payloads"
@@ -424,8 +454,10 @@
       "preconditions": "Password was reset",
       "source_test_data": "Old password/session",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "emails",
+        "passwords",
         "security_payloads"
       ],
       "values": {}
@@ -440,6 +472,7 @@
       "preconditions": "Pricing page loaded",
       "source_test_data": "Billing toggle",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -453,6 +486,7 @@
       "preconditions": "Pricing page loaded",
       "source_test_data": "All plans",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -468,6 +502,7 @@
       "preconditions": "Pricing page loaded",
       "source_test_data": "Published plan matrix",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -481,6 +516,7 @@
       "preconditions": "Pricing page loaded",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -494,6 +530,7 @@
       "preconditions": "Pricing page loaded",
       "source_test_data": "All FAQ items",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -507,6 +544,7 @@
       "preconditions": "Logged-in Free user at board limit",
       "source_test_data": "Free plan",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -521,8 +559,11 @@
       "scenario": "Enforce plan resource limits",
       "preconditions": "User at member/file/attachment limit",
       "source_test_data": "Boundary + 1",
-      "role": "team",
-      "data_refs": [],
+      "role": "owner",
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "text_boundaries"
+      ],
       "values": {}
     },
     {
@@ -534,7 +575,8 @@
       "scenario": "Prevent client-side plan bypass",
       "preconditions": "User has lower plan",
       "source_test_data": "Restricted feature",
-      "role": "client",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -550,6 +592,7 @@
       "preconditions": "Authenticated owner",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -565,6 +608,7 @@
       "preconditions": "Archived board exists",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -580,6 +624,7 @@
       "preconditions": "Plan allows board creation",
       "source_test_data": "QA Regression",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -595,6 +640,7 @@
       "preconditions": "New Board dialog open",
       "source_test_data": "Blank, spaces",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "text_boundaries"
@@ -611,6 +657,7 @@
       "preconditions": "Board creation open",
       "source_test_data": "Boundary strings",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "text_boundaries"
@@ -627,6 +674,7 @@
       "preconditions": "Owner has board",
       "source_test_data": "Release QA",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -642,6 +690,7 @@
       "preconditions": "Owner has active board",
       "source_test_data": "Active board",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -657,6 +706,7 @@
       "preconditions": "Archived board exists",
       "source_test_data": "Archived board",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -672,6 +722,7 @@
       "preconditions": "Non-owner member exists",
       "source_test_data": "Member/client roles",
       "role": "team",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "security_payloads"
@@ -688,6 +739,7 @@
       "preconditions": "Network can be interrupted",
       "source_test_data": "HTTP 500/timeout",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -703,6 +755,7 @@
       "preconditions": "Board is open",
       "source_test_data": "Backlog, Open, In Progress, Review, Closed",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists"
       ],
@@ -718,6 +771,7 @@
       "preconditions": "Owner/editor",
       "source_test_data": "Blocked",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists"
       ],
@@ -733,6 +787,7 @@
       "preconditions": "Add list open",
       "source_test_data": "Boundary data",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists",
         "text_boundaries"
@@ -749,6 +804,7 @@
       "preconditions": "Custom list exists",
       "source_test_data": "Ready for QA",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists"
       ],
@@ -764,6 +820,7 @@
       "preconditions": "Multiple lists exist",
       "source_test_data": "Existing list",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists"
       ],
@@ -779,6 +836,7 @@
       "preconditions": "List contains cards",
       "source_test_data": "Non-empty list",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists"
       ],
@@ -794,6 +852,7 @@
       "preconditions": "Card exists",
       "source_test_data": "Existing card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists",
         "cards"
@@ -810,6 +869,7 @@
       "preconditions": "Two users have board open",
       "source_test_data": "Same entity",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "lists",
         "cards"
@@ -826,6 +886,7 @@
       "preconditions": "Board open with editable list",
       "source_test_data": "Checkout defect",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -841,6 +902,7 @@
       "preconditions": "Create card dialog open",
       "source_test_data": "Complete defect record",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -856,6 +918,7 @@
       "preconditions": "Create card dialog open",
       "source_test_data": "Blank title",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "text_boundaries"
@@ -872,6 +935,7 @@
       "preconditions": "Create card dialog open",
       "source_test_data": "Boundary strings and emoji",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "text_boundaries"
@@ -888,6 +952,7 @@
       "preconditions": "Card exists",
       "source_test_data": "Existing card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -903,6 +968,7 @@
       "preconditions": "Card exists and user can edit",
       "source_test_data": "Updated values",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -918,6 +984,7 @@
       "preconditions": "Card exists",
       "source_test_data": "Unsaved changes",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -933,6 +1000,7 @@
       "preconditions": "Card exists",
       "source_test_data": "Existing card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -948,6 +1016,7 @@
       "preconditions": "Card exists",
       "source_test_data": "Existing card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -963,6 +1032,7 @@
       "preconditions": "Card is updated repeatedly",
       "source_test_data": "Existing card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -977,8 +1047,10 @@
       "scenario": "Assign and unassign member",
       "preconditions": "Card open",
       "source_test_data": "Board member",
-      "role": "team",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "boards",
         "cards"
       ],
       "values": {}
@@ -992,7 +1064,8 @@
       "scenario": "Prevent assigning non-member",
       "preconditions": "User not on board exists",
       "source_test_data": "External user",
-      "role": "team",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "security_payloads"
@@ -1009,6 +1082,7 @@
       "preconditions": "Card open",
       "source_test_data": "Existing label",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "labels"
@@ -1025,6 +1099,7 @@
       "preconditions": "Permission allows label management",
       "source_test_data": "UI / Frontend",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "labels"
@@ -1041,8 +1116,10 @@
       "preconditions": "Card open",
       "source_test_data": "Future date",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
-        "cards"
+        "cards",
+        "dates"
       ],
       "values": {}
     },
@@ -1056,6 +1133,7 @@
       "preconditions": "Past-due open card exists",
       "source_test_data": "Yesterday",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -1071,6 +1149,7 @@
       "preconditions": "Overdue card exists",
       "source_test_data": "Past due card",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -1086,8 +1165,11 @@
       "preconditions": "Users in different timezones",
       "source_test_data": "Boundary date",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
-        "cards"
+        "cards",
+        "dates",
+        "text_boundaries"
       ],
       "values": {}
     },
@@ -1101,6 +1183,7 @@
       "preconditions": "Card create/detail open",
       "source_test_data": "PDF/PNG under plan limit",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments"
       ],
@@ -1116,6 +1199,7 @@
       "preconditions": "Upload area visible",
       "source_test_data": "Valid image",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments"
       ],
@@ -1131,6 +1215,7 @@
       "preconditions": "Upload area visible",
       "source_test_data": "Free >5MB / plan boundary",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments",
         "text_boundaries"
@@ -1147,6 +1232,7 @@
       "preconditions": "Upload area visible",
       "source_test_data": "malware.exe, x.jpg.html",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments",
         "security_payloads"
@@ -1163,9 +1249,11 @@
       "preconditions": "Card has attachments",
       "source_test_data": "Plan boundary",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
-        "attachments"
+        "attachments",
+        "text_boundaries"
       ],
       "values": {}
     },
@@ -1179,6 +1267,7 @@
       "preconditions": "Attachment exists",
       "source_test_data": "Attachment URL",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments"
       ],
@@ -1194,6 +1283,7 @@
       "preconditions": "Attachment exists",
       "source_test_data": "Existing attachment",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments"
       ],
@@ -1209,6 +1299,7 @@
       "preconditions": "Network interruption available",
       "source_test_data": "Large valid file",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "attachments"
       ],
@@ -1224,6 +1315,7 @@
       "preconditions": "Cards exist across boards",
       "source_test_data": "Known title",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards"
       ],
@@ -1239,6 +1331,7 @@
       "preconditions": "Cards exist",
       "source_test_data": "checkOUT",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1252,6 +1345,7 @@
       "preconditions": "Cards contain description/labels",
       "source_test_data": "Known values",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1265,6 +1359,7 @@
       "preconditions": "Search open",
       "source_test_data": "Blank",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1278,6 +1373,7 @@
       "preconditions": "Search open",
       "source_test_data": "zz_no_match_987",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1291,6 +1387,7 @@
       "preconditions": "Large dataset exists",
       "source_test_data": "Common term",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1304,6 +1401,7 @@
       "preconditions": "Search open",
       "source_test_data": "<img onerror=...>",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -1319,6 +1417,7 @@
       "preconditions": "Search available",
       "source_test_data": "Keyboard",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -1334,6 +1433,7 @@
       "preconditions": "Board has varied cards",
       "source_test_data": "Urgent, High, Normal, Low",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1347,6 +1447,7 @@
       "preconditions": "Board has varied cards",
       "source_test_data": "Critical, High, Medium, Low",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1359,7 +1460,8 @@
       "scenario": "Filter by source",
       "preconditions": "Board has internal/client cards",
       "source_test_data": "Source",
-      "role": "client",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1373,7 +1475,10 @@
       "preconditions": "Board has due-date variants",
       "source_test_data": "Due date filters",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "dates"
+      ],
       "values": {}
     },
     {
@@ -1386,6 +1491,7 @@
       "preconditions": "Board has cards in all lists",
       "source_test_data": "All columns",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1399,6 +1505,7 @@
       "preconditions": "Multiple filters available",
       "source_test_data": "High + Critical + Overdue",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1412,6 +1519,7 @@
       "preconditions": "Filters active",
       "source_test_data": "Active filters",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1425,6 +1533,7 @@
       "preconditions": "Filters active",
       "source_test_data": "Active filters",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1437,8 +1546,11 @@
       "scenario": "Invite team member by valid email",
       "preconditions": "Owner on board",
       "source_test_data": "Unused valid email",
-      "role": "team",
-      "data_refs": [],
+      "role": "owner",
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "emails"
+      ],
       "values": {}
     },
     {
@@ -1450,8 +1562,11 @@
       "scenario": "Invite client role",
       "preconditions": "Owner on board",
       "source_test_data": "Client email",
-      "role": "client",
-      "data_refs": [],
+      "role": "owner",
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "emails"
+      ],
       "values": {}
     },
     {
@@ -1464,7 +1579,9 @@
       "preconditions": "Share dialog open",
       "source_test_data": "bad@",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "emails",
         "text_boundaries"
       ],
       "values": {}
@@ -1478,8 +1595,11 @@
       "scenario": "Handle duplicate invite",
       "preconditions": "Member already invited/joined",
       "source_test_data": "Existing member email",
-      "role": "team",
-      "data_refs": [],
+      "role": "owner",
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "emails"
+      ],
       "values": {}
     },
     {
@@ -1492,6 +1612,7 @@
       "preconditions": "Pending invite exists",
       "source_test_data": "Invite link",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1505,6 +1626,7 @@
       "preconditions": "Expired/revoked invite exists",
       "source_test_data": "Invalid token",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -1520,6 +1642,7 @@
       "preconditions": "Share links supported",
       "source_test_data": "Share link",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1533,6 +1656,7 @@
       "preconditions": "Join request exists",
       "source_test_data": "Pending requester",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1546,6 +1670,7 @@
       "preconditions": "Join request exists",
       "source_test_data": "Pending requester",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1559,6 +1684,7 @@
       "preconditions": "Team and Client users exist",
       "source_test_data": "Owner, Team, Client",
       "role": "client",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -1573,7 +1699,8 @@
       "scenario": "Change member role/remove member",
       "preconditions": "Member exists",
       "source_test_data": "Existing member",
-      "role": "team",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1587,6 +1714,7 @@
       "preconditions": "Board contains cards",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "report_periods"
@@ -1603,7 +1731,9 @@
       "preconditions": "Reports contain varied data",
       "source_test_data": "Board member",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "boards",
         "report_periods"
       ],
       "values": {}
@@ -1618,6 +1748,7 @@
       "preconditions": "Labels exist",
       "source_test_data": "Existing label",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "labels",
         "report_periods"
@@ -1633,7 +1764,8 @@
       "scenario": "Filter by source",
       "preconditions": "Internal/client cards exist",
       "source_test_data": "Source filter",
-      "role": "client",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1649,6 +1781,7 @@
       "preconditions": "Historical data exists",
       "source_test_data": "Date ranges",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1664,6 +1797,7 @@
       "preconditions": "Known seeded card dataset exists",
       "source_test_data": "Seeded dataset",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "report_periods"
@@ -1680,6 +1814,7 @@
       "preconditions": "Report filters applied",
       "source_test_data": "Filtered report",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1695,6 +1830,7 @@
       "preconditions": "Report filters applied",
       "source_test_data": "Filtered report",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1710,6 +1846,7 @@
       "preconditions": "User belongs to multiple boards",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1725,7 +1862,9 @@
       "preconditions": "Client role exists",
       "source_test_data": "Other board ID",
       "role": "client",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "boards",
         "report_periods",
         "security_payloads"
       ],
@@ -1741,6 +1880,7 @@
       "preconditions": "Large reporting dataset exists",
       "source_test_data": "Large dataset",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -1756,6 +1896,7 @@
       "preconditions": "Notification-triggering event occurs",
       "source_test_data": "Assignment/invite/update",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1769,6 +1910,7 @@
       "preconditions": "Unread notification exists",
       "source_test_data": "Existing notification",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1782,6 +1924,7 @@
       "preconditions": "Multiple unread items exist",
       "source_test_data": "Unread items",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1795,6 +1938,7 @@
       "preconditions": "Old notifications exist",
       "source_test_data": "Notification dataset",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1808,7 +1952,9 @@
       "preconditions": "Notification references inaccessible resource",
       "source_test_data": "Revoked board",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "boards",
         "security_payloads"
       ],
       "values": {}
@@ -1823,6 +1969,7 @@
       "preconditions": "Same account open in two sessions",
       "source_test_data": "Two sessions",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -1836,7 +1983,10 @@
       "preconditions": "Authenticated user",
       "source_test_data": "N/A",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "attachments"
+      ],
       "values": {}
     },
     {
@@ -1849,7 +1999,10 @@
       "preconditions": "Profile page open",
       "source_test_data": "Updated name",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "attachments"
+      ],
       "values": {}
     },
     {
@@ -1862,7 +2015,9 @@
       "preconditions": "Profile page open",
       "source_test_data": "Boundary values",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "attachments",
         "text_boundaries"
       ],
       "values": {}
@@ -1877,7 +2032,10 @@
       "preconditions": "Authenticated user",
       "source_test_data": "Theme toggle",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "attachments"
+      ],
       "values": {}
     },
     {
@@ -1890,7 +2048,10 @@
       "preconditions": "Dark mode enabled",
       "source_test_data": "Dark theme",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "attachments"
+      ],
       "values": {}
     },
     {
@@ -1903,8 +2064,10 @@
       "preconditions": "Profile/security settings available",
       "source_test_data": "Valid strong password",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "passwords",
+        "attachments",
         "security_payloads"
       ],
       "values": {}
@@ -1919,7 +2082,10 @@
       "preconditions": "Account deletion available",
       "source_test_data": "Disposable account",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "attachments"
+      ],
       "values": {}
     },
     {
@@ -1932,6 +2098,7 @@
       "preconditions": "Pro+ user and valid integration configured",
       "source_test_data": "Valid mapping",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "integration_errors"
@@ -1948,6 +2115,7 @@
       "preconditions": "Pro+ user and valid GitHub connection",
       "source_test_data": "Valid repository",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "cards",
         "integration_errors"
@@ -1964,6 +2132,7 @@
       "preconditions": "Integration setup open",
       "source_test_data": "Invalid configuration",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors",
         "text_boundaries"
@@ -1980,6 +2149,7 @@
       "preconditions": "Integration credentials configured",
       "source_test_data": "Saved token",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors",
         "security_payloads"
@@ -1996,6 +2166,7 @@
       "preconditions": "Provider returns 401/403",
       "source_test_data": "401/403",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors"
       ],
@@ -2011,6 +2182,7 @@
       "preconditions": "Provider times out/returns 5xx",
       "source_test_data": "Timeout/500",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors"
       ],
@@ -2026,6 +2198,7 @@
       "preconditions": "Card was pushed previously",
       "source_test_data": "Existing external ID",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors"
       ],
@@ -2041,6 +2214,7 @@
       "preconditions": "User lacks board/integration permission",
       "source_test_data": "Client role",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "integration_errors",
         "security_payloads"
@@ -2057,6 +2231,7 @@
       "preconditions": "Test environment authorization",
       "source_test_data": "Another user resource ID",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2072,6 +2247,7 @@
       "preconditions": "Multiple roles exist",
       "source_test_data": "Client to Owner",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2087,6 +2263,7 @@
       "preconditions": "Forms and rich text available",
       "source_test_data": "XSS payload set",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2102,6 +2279,7 @@
       "preconditions": "API accepts user input",
       "source_test_data": "Injection corpus",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2117,6 +2295,7 @@
       "preconditions": "Authenticated session exists",
       "source_test_data": "Create/update/delete endpoint",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2132,6 +2311,7 @@
       "preconditions": "App running over HTTPS",
       "source_test_data": "App origin",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2147,6 +2327,7 @@
       "preconditions": "Login/reset/invite endpoints available",
       "source_test_data": "Burst requests",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2162,6 +2343,7 @@
       "preconditions": "Sensitive workflows exist",
       "source_test_data": "Credentials/tokens/test PII",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads"
       ],
@@ -2177,6 +2359,7 @@
       "preconditions": "Session active",
       "source_test_data": "Expired token",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "security_payloads",
         "text_boundaries"
@@ -2193,7 +2376,10 @@
       "preconditions": "File export/share links exist",
       "source_test_data": "Reports/attachments",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "attachments",
+        "report_periods",
         "security_payloads"
       ],
       "values": {}
@@ -2208,6 +2394,7 @@
       "preconditions": "Any app page",
       "source_test_data": "All interactive controls",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -2223,6 +2410,7 @@
       "preconditions": "Any app page",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2236,7 +2424,9 @@
       "preconditions": "Forms/dialogs exist",
       "source_test_data": "Login/signup/card/share forms",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
+        "cards",
         "labels"
       ],
       "values": {}
@@ -2251,6 +2441,7 @@
       "preconditions": "Modal opens",
       "source_test_data": "Dialog",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2264,6 +2455,7 @@
       "preconditions": "Board/status colors visible",
       "source_test_data": "All badges",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2277,6 +2469,7 @@
       "preconditions": "Reports and cards available",
       "source_test_data": "N/A",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2290,6 +2483,7 @@
       "preconditions": "Page zoom supported",
       "source_test_data": "Key pages",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2303,6 +2497,7 @@
       "preconditions": "Authenticated user",
       "source_test_data": "Mobile viewport",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards",
         "viewports"
@@ -2319,6 +2514,7 @@
       "preconditions": "Authenticated user",
       "source_test_data": "Viewport matrix",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "viewports"
       ],
@@ -2334,6 +2530,7 @@
       "preconditions": "Test accounts available",
       "source_test_data": "Chrome, Edge, Firefox, Safari",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2347,6 +2544,7 @@
       "preconditions": "Representative dataset",
       "source_test_data": "Target dataset",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -2362,7 +2560,10 @@
       "preconditions": "Board with 1k+ cards",
       "source_test_data": "Large board",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "boards"
+      ],
       "values": {}
     },
     {
@@ -2375,6 +2576,7 @@
       "preconditions": "Network throttling available",
       "source_test_data": "Slow 3G/offline",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2388,7 +2590,10 @@
       "preconditions": "Two users edit same card",
       "source_test_data": "Same card",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "cards"
+      ],
       "values": {}
     },
     {
@@ -2401,6 +2606,7 @@
       "preconditions": "Browser locale/timezone configurable",
       "source_test_data": "INR, dates, times",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2414,6 +2620,7 @@
       "preconditions": "Unique email and plan capacity",
       "source_test_data": "New account",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "boards"
       ],
@@ -2428,7 +2635,8 @@
       "scenario": "Defect lifecycle to closure",
       "preconditions": "Owner and Team member exist",
       "source_test_data": "Seeded defect",
-      "role": "team",
+      "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2442,6 +2650,7 @@
       "preconditions": "Owner and Client exist",
       "source_test_data": "Client role",
       "role": "client",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2455,6 +2664,7 @@
       "preconditions": "Integration configured",
       "source_test_data": "ClickUp/GitHub",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     },
@@ -2468,6 +2678,7 @@
       "preconditions": "Reportable data exists",
       "source_test_data": "Known dataset",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "report_periods"
       ],
@@ -2483,7 +2694,10 @@
       "preconditions": "Owner with active board and data",
       "source_test_data": "Existing board",
       "role": "owner",
-      "data_refs": [],
+      "review_status": "generated_needs_review",
+      "data_refs": [
+        "boards"
+      ],
       "values": {}
     },
     {
@@ -2496,6 +2710,7 @@
       "preconditions": "Free user near all limits",
       "source_test_data": "Free to Pro sandbox",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [
         "text_boundaries"
       ],
@@ -2511,6 +2726,7 @@
       "preconditions": "Authenticated session",
       "source_test_data": "Valid user",
       "role": "owner",
+      "review_status": "generated_needs_review",
       "data_refs": [],
       "values": {}
     }

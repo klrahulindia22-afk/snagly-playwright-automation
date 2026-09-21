@@ -4,6 +4,8 @@ UI journeys remain the primary coverage. Use this client only to prepare test st
 or validate backend responses without relying on browser-only setup steps.
 """
 
+from urllib.parse import urlencode
+
 from playwright.sync_api import APIRequestContext, expect
 
 
@@ -86,7 +88,7 @@ class SnaglyApi:
         return self.request.get(f"/api/v1/boards/{board_id}/dashboard?days={days}", headers=self._headers)
 
     def search(self, query: str):
-        return self.request.get(f"/api/v1/search?q={query}", headers=self._headers)
+        return self.request.get(f"/api/v1/search?{urlencode({'q': query})}", headers=self._headers)
 
     def get_subscription(self):
         return self.request.get("/api/v1/subscriptions/me", headers=self._headers)

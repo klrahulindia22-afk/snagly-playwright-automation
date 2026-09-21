@@ -27,3 +27,13 @@ The manual suite contains 172 test cases across 17 modules. This repository sepa
 | End-to-End | API setup + UI verification fixtures support independent full journeys |
 
 Every destructive test must use `E2E-` data, declare the `destructive` marker, and clean up through a fixture finalizer. Credentials and provider tokens remain environment secrets.
+
+## Case-level report
+
+Every application test and parameter must declare `@pytest.mark.case_id(...)`. Collection fails when the marker is missing. Generate the current 172-case status report with:
+
+```bash
+pytest --collect-only -q --traceability-output=reports/traceability
+```
+
+This creates JSON and Markdown reports showing each case as `automated` or `pending` and lists the collected test node IDs. The generated report is uploaded by the CI quality gate and is the authoritative automation-coverage view; the module table above describes architecture only.

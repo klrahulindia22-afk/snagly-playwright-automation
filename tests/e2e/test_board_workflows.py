@@ -7,6 +7,7 @@ from pages.boards_page import BoardsPage
 
 @pytest.mark.boards
 @pytest.mark.smoke
+@pytest.mark.case_id("SNAG-TC-038")
 def test_boards_dashboard_controls(authenticated_page, app_url):
     boards = BoardsPage(authenticated_page, app_url)
     boards.open()
@@ -17,6 +18,7 @@ def test_boards_dashboard_controls(authenticated_page, app_url):
 
 @pytest.mark.boards
 @pytest.mark.regression
+@pytest.mark.case_id("SNAG-TC-047")
 def test_board_displays_default_workflow(authenticated_page, app_url, disposable_board):
     board = BoardPage(authenticated_page, app_url)
     board.open_by_id(disposable_board["id"])
@@ -27,6 +29,7 @@ def test_board_displays_default_workflow(authenticated_page, app_url, disposable
 @pytest.mark.boards
 @pytest.mark.cards
 @pytest.mark.regression
+@pytest.mark.case_id("SNAG-TC-059")
 def test_api_seeded_card_is_visible(authenticated_page, app_url, disposable_board, disposable_card):
     board = BoardPage(authenticated_page, app_url)
     board.open_by_id(disposable_board["id"])
@@ -35,6 +38,7 @@ def test_api_seeded_card_is_visible(authenticated_page, app_url, disposable_boar
 
 @pytest.mark.boards
 @pytest.mark.regression
+@pytest.mark.case_id("SNAG-TC-089")
 def test_filter_panel_lists_supported_filters(authenticated_page, app_url, disposable_board):
     board = BoardPage(authenticated_page, app_url)
     board.open_by_id(disposable_board["id"])
@@ -45,6 +49,7 @@ def test_filter_panel_lists_supported_filters(authenticated_page, app_url, dispo
 
 @pytest.mark.boards
 @pytest.mark.permissions
+@pytest.mark.case_id("SNAG-TC-098")
 def test_share_dialog_exposes_team_and_client_roles(authenticated_page, app_url, disposable_board):
     board = BoardPage(authenticated_page, app_url)
     board.open_by_id(disposable_board["id"])

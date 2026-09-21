@@ -6,12 +6,12 @@ import pytest
 @pytest.mark.parametrize(
     "method_name",
     [
-        "get_archived_boards",
-        "get_notifications",
-        "get_notification_preferences",
-        "get_digest_preferences",
-        "get_subscription",
-        "get_invoices",
+        pytest.param("get_archived_boards", marks=pytest.mark.case_id("SNAG-TC-044")),
+        pytest.param("get_notifications", marks=pytest.mark.case_id("SNAG-TC-122")),
+        pytest.param("get_notification_preferences", marks=pytest.mark.case_id("SNAG-TC-121")),
+        pytest.param("get_digest_preferences", marks=pytest.mark.case_id("SNAG-TC-127")),
+        pytest.param("get_subscription", marks=pytest.mark.case_id("SNAG-TC-035")),
+        pytest.param("get_invoices", marks=pytest.mark.case_id("SNAG-TC-031")),
     ],
 )
 def test_user_scoped_read_contracts(authenticated_api, method_name):
@@ -25,16 +25,16 @@ def test_user_scoped_read_contracts(authenticated_api, method_name):
 @pytest.mark.parametrize(
     "method_name",
     [
-        "get_lists",
-        "get_labels",
-        "get_members",
-        "get_join_requests",
-        "get_board_activity",
-        "get_integrations",
-        "get_templates",
-        "get_sla_rules",
-        "get_field_definitions",
-        "get_board_dashboard",
+        pytest.param("get_lists", marks=pytest.mark.case_id("SNAG-TC-047")),
+        pytest.param("get_labels", marks=pytest.mark.case_id("SNAG-TC-067")),
+        pytest.param("get_members", marks=pytest.mark.case_id("SNAG-TC-106")),
+        pytest.param("get_join_requests", marks=pytest.mark.case_id("SNAG-TC-104")),
+        pytest.param("get_board_activity", marks=pytest.mark.case_id("SNAG-TC-064")),
+        pytest.param("get_integrations", marks=pytest.mark.case_id("SNAG-TC-134")),
+        pytest.param("get_templates", marks=pytest.mark.case_id("SNAG-TC-056")),
+        pytest.param("get_sla_rules", marks=pytest.mark.case_id("SNAG-TC-069")),
+        pytest.param("get_field_definitions", marks=pytest.mark.case_id("SNAG-TC-060")),
+        pytest.param("get_board_dashboard", marks=pytest.mark.case_id("SNAG-TC-108")),
     ],
 )
 def test_board_scoped_read_contracts(authenticated_api, disposable_board, method_name):
@@ -48,9 +48,17 @@ def test_board_scoped_read_contracts(authenticated_api, disposable_board, method
 @pytest.mark.parametrize(
     "email,password",
     [
-        ("unknown-user@example.com", "WrongPassword1!"),
-        ("not-an-email", "WrongPassword1!"),
-        ("", ""),
+        pytest.param(
+            "unknown-user@example.com",
+            "WrongPassword1!",
+            marks=pytest.mark.case_id("SNAG-TC-011"),
+        ),
+        pytest.param(
+            "not-an-email",
+            "WrongPassword1!",
+            marks=pytest.mark.case_id("SNAG-TC-013"),
+        ),
+        pytest.param("", "", marks=pytest.mark.case_id("SNAG-TC-012")),
     ],
 )
 def test_login_rejects_invalid_credentials(api_client, email, password):
@@ -60,6 +68,7 @@ def test_login_rejects_invalid_credentials(api_client, email, password):
 
 @pytest.mark.api
 @pytest.mark.security
+@pytest.mark.case_id("SNAG-TC-140")
 def test_unknown_board_is_not_disclosed(authenticated_api):
     response = authenticated_api.get_board(2_147_483_647)
     assert response.status in {403, 404}

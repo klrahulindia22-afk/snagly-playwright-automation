@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["id", "email", "full_name", "role"],
+  "properties": {
+    "id": {"type": ["integer", "string"]},
+    "email": {"type": "string", "format": "email"},
+    "full_name": {"type": "string"},
+    "role": {"type": "string"}
+  },
+  "additionalProperties": true
+}

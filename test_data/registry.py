@@ -6,10 +6,13 @@ from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+from jsonschema import Draft202012Validator
+
 from config.settings import Settings
 from utils.data_factory import unique_name
 
 ROOT = Path(__file__).resolve().parent
+SCHEMA_ROOT = ROOT.parent / "schemas"
 CASE_ID_PATTERN = re.compile(r"^SNAG-TC-\d{3}$")
 
 
@@ -34,6 +37,8 @@ class TestDataRegistry:
         self.common_path = common_path or ROOT / "common.json"
         self.common = self._read(self.common_path)
         payload = self._read(self.cases_path)
+        self._validate_schema(self.common, SCHEMA_ROOT / "common-test-data.schema.json")
+        self._validate_schema(payload, SCHEMA_ROOT / "case-data.schema.json")
         self.expected_count = payload["expected_count"]
         self._case_items = payload["cases"]
         self._cases = {item["case_id"]: item for item in self._case_items}
@@ -43,6 +48,17 @@ class TestDataRegistry:
     def _read(path: Path) -> Any:
         with path.open(encoding="utf-8") as handle:
             return json.load(handle)
+
+    @classmethod
+    def _validate_schema(cls, payload: Any, schema_path: Path) -> None:
+        schema = cls._read(schema_path)
+        errors = sorted(Draft202012Validator(schema).iter_errors(payload), key=lambda error: list(error.path))
+        if errors:
+            details = "; ".join(
+                f"{'/'.join(map(str, error.path)) or '<root>'}: {error.message}"
+                for error in errors[:10]
+            )
+            raise ValueError(f"Invalid test-data schema ({schema_path.name}): {details}")
 
     def validate(self) -> None:
         ids = [item["case_id"] for item in self._case_items]

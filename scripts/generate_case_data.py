@@ -6,31 +6,42 @@ from pathlib import Path
 
 from openpyxl import load_workbook
 
+ROLE_OVERRIDES = {
+    "SNAG-TC-045": "team",
+    "SNAG-TC-106": "client",
+    "SNAG-TC-117": "client",
+    "SNAG-TC-167": "client",
+}
+
 
 def infer_role(preconditions: str, scenario: str) -> str:
     text = f"{preconditions} {scenario}".lower()
-    if "admin" in text:
+    if "logged in as admin" in text or "admin account" in text:
         return "admin"
-    if "client" in text:
+    if "logged in as client" in text or "client user performs" in text:
         return "client"
-    if "team" in text or "member" in text:
+    if "logged in as team" in text or "team user performs" in text:
         return "team"
-    if "other owner" in text or "unauthorized" in text:
+    if "logged in as other owner" in text:
         return "other_owner"
     return "owner"
 
 
-def infer_refs(module: str, test_type: str, scenario: str) -> list[str]:
-    text = f"{module} {test_type} {scenario}".lower()
+def infer_refs(module: str, test_type: str, scenario: str, test_data: str) -> list[str]:
+    text = f"{module} {test_type} {scenario} {test_data}".lower()
     refs = []
     mapping = {
         "authentication": "emails",
         "password": "passwords",
+        "email": "emails",
         "board": "boards",
         "list": "lists",
         "card": "cards",
         "label": "labels",
         "attachment": "attachments",
+        "file": "attachments",
+        "due date": "dates",
+        "timezone": "dates",
         "responsive": "viewports",
         "viewport": "viewports",
         "report": "report_periods",
@@ -61,17 +72,20 @@ def generate(source: Path, output: Path) -> None:
         test_type = str(row[index["Type"]] or "")
         scenario = str(row[index["Test Scenario"]] or "")
         preconditions = str(row[index["Preconditions"]] or "")
+        case_id = str(row[index["Test Case ID"]])
+        source_test_data = str(row[index["Test Data"]] or "")
         cases.append({
-            "case_id": row[index["Test Case ID"]],
+            "case_id": case_id,
             "module": module,
             "submodule": row[index["Submodule"]],
             "type": test_type,
             "priority": row[index["Priority"]],
             "scenario": scenario,
             "preconditions": preconditions,
-            "source_test_data": str(row[index["Test Data"]] or ""),
-            "role": infer_role(preconditions, scenario),
-            "data_refs": infer_refs(module, test_type, scenario),
+            "source_test_data": source_test_data,
+            "role": ROLE_OVERRIDES.get(case_id, infer_role(preconditions, scenario)),
+            "review_status": "generated_needs_review",
+            "data_refs": infer_refs(module, test_type, scenario, source_test_data),
             "values": {},
         })
     payload = {"schema_version": 1, "expected_count": len(cases), "cases": cases}

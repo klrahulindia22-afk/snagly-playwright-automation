@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "users", "emails", "passwords", "text_boundaries", "security_payloads",
+    "boards", "lists", "cards", "labels", "dates", "attachments", "viewports",
+    "report_periods", "integration_errors"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "users": {"type": "object"},
+    "emails": {"type": "object"},
+    "passwords": {"type": "object"},
+    "text_boundaries": {"type": "object"},
+    "security_payloads": {"type": "object"},
+    "boards": {"type": "object"},
+    "lists": {"type": "object"},
+    "cards": {"type": "object"},
+    "labels": {"type": "array", "minItems": 1},
+    "dates": {"type": "object"},
+    "attachments": {"type": "object"},
+    "viewports": {"type": "array", "minItems": 1},
+    "report_periods": {"type": "array", "minItems": 1},
+    "integration_errors": {"type": "array", "minItems": 1}
+  }
+}

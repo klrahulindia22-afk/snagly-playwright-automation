@@ -6,7 +6,7 @@ The framework contains a validated data record for every manual test case from `
 
 | Layer | Source | Purpose |
 |---|---|---|
-| Case catalogue | `test_data/cases.json` | Module, scenario, priority, role and required data groups for all 172 cases |
+| Case catalogue | `test_data/cases.json` | Module, scenario, priority, role, review status and required data groups for all 172 cases |
 | Shared safe data | `test_data/common.json` | Boundaries, valid/invalid inputs, security payloads, viewports and attachment specifications |
 | Runtime data | `test_data/registry.py` | Environment credentials, unique entity names, relative dates and a per-test temporary directory |
 
@@ -31,7 +31,7 @@ Resolution is automatic:
 2. `case_data` asks the session-scoped registry for that ID.
 3. The registry merges the case's referenced groups from `common.json`.
 4. It injects runtime credentials, unique names, dates and `tmp_path`.
-5. An unknown or incomplete catalogue fails validation instead of silently using wrong data.
+5. JSON Schema plus registry rules reject unknown, incomplete, duplicate or wrongly referenced data.
 
 | Fixture | Result |
 |---|---|
@@ -61,7 +61,7 @@ python scripts/generate_case_data.py /path/to/Snagly_Complete_App_Test_Cases.xls
 pytest tests/unit/test_test_data_registry.py -q
 ```
 
-The generator infers the role and required shared datasets from the module, type, scenario and original test-data description while preserving the workbook text for traceability. Review the JSON diff and commit it with the workbook change reference.
+The generator infers the role and required shared datasets from the module, type, scenario and original test-data description while preserving the workbook text for traceability. Generated records are marked `generated_needs_review`; a QA reviewer must verify the role and references before changing that value to `reviewed`. Review the JSON diff and commit it with the workbook change reference.
 
 ## Seeded application data
 

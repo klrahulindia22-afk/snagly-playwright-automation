@@ -9,14 +9,15 @@ The framework validates the React/Vite web application and FastAPI backend throu
 | Item | Current implementation |
 |---|---|
 | Manual test inventory | 172 cases across 17 modules |
-| Executable automated checks | 55 collected tests |
+| Executable automated checks | 63 collected tests: 55 application variants and 8 framework unit checks |
+| Manual cases currently linked | 41 automated, 131 pending |
 | UI automation | Playwright Page Object Model |
 | API automation | Playwright `APIRequestContext` wrapper |
 | Test runner | pytest 8 |
 | Browsers | Chromium, Firefox and WebKit |
 | Parallel execution | pytest-xdist |
 | Reports | HTML, JUnit XML, screenshots, video and Playwright traces |
-| CI | GitHub Actions UI smoke and API contract jobs |
+| CI | Always-on quality gate plus API, Chromium and nightly cross-browser jobs |
 
 See [Automation Traceability](docs/automation-traceability.md) for the manual-to-automation mapping. Email delivery, payments, external issue creation, file storage, multi-user concurrency and destructive security testing require dedicated sandbox services.
 
@@ -196,6 +197,11 @@ TEST_RUN_ID=local
 | `DEFAULT_TIMEOUT_MS` | No | Locator/assertion timeout; default 10 seconds |
 | `NAVIGATION_TIMEOUT_MS` | No | Navigation timeout; default 20 seconds |
 | `TEST_RUN_ID` | No | CI/build ID included in generated data |
+| `TEST_ENVIRONMENT` | No | `local`, `staging` or explicitly authorized `production` |
+| `ALLOW_DESTRUCTIVE_TESTS` | No | Explicit safety switch for destructive cases; default `false` |
+| `ALLOW_PRODUCTION_TESTS` | No | Explicit authorization for production-like targets; default `false` |
+| `FAIL_ON_BROWSER_ERRORS` | No | Fail UI tests on unexpected console/page errors; default `true` |
+| `BROWSER_ERROR_ALLOWLIST` | No | Reviewed comma-separated error fragments to ignore |
 
 `BASE_URL` and `API_BASE_URL` are intentionally separate because the Vite frontend and FastAPI backend may use different origins.
 
@@ -228,6 +234,7 @@ The seed should provide verified Owner, Team, Client, Other Owner and Super Admi
 python -m compileall -q conftest.py clients config pages test_data tests utils
 python -m ruff check .
 pytest --collect-only -q
+pytest --collect-only -q --traceability-output=reports/traceability
 
 pytest -m smoke --browser chromium
 pytest -m public --browser chromium
@@ -297,6 +304,7 @@ Use parallel execution only when data is isolated. Shared records and provider i
 | `responsive` | Viewport and reflow checks |
 | `destructive` | Permanent deletion or mutation |
 | `serial` | Must not run concurrently |
+| `case_id(...)` | Manual case IDs covered by the test or parameter |
 
 Examples:
 
@@ -380,8 +388,11 @@ pytest -x --tb=long
 
 | Job | Purpose | Requirement |
 |---|---|---|
-| `smoke` | Chromium UI smoke with evidence | Frontend URL and Owner credentials |
+| `quality-gates` | Lint, compile, dependency, unit, collection and traceability checks | None |
+| `ui-smoke` | Chromium UI smoke with evidence | Frontend/API URL and Owner credentials |
 | `api-contracts` | API contracts and reports | Backend URL and Owner credentials |
+| `cross-browser-nightly` | Firefox and WebKit smoke | Scheduled/manual run and staging secrets |
+| `regression-nightly` | Chromium non-destructive regression with video/trace evidence | Scheduled/manual run and staging secrets |
 
 Configure GitHub Actions secrets:
 
@@ -391,8 +402,12 @@ Configure GitHub Actions secrets:
 | `SNAGLY_API_BASE_URL` | Reachable FastAPI backend |
 | `SNAGLY_TEST_USER_EMAIL` | Dedicated Owner automation account |
 | `SNAGLY_TEST_USER_PASSWORD` | Owner password |
+| `SNAGLY_TEAM_USER_EMAIL/PASSWORD` | Team-member permission checks |
+| `SNAGLY_CLIENT_USER_EMAIL/PASSWORD` | Client permission checks |
+| `SNAGLY_OTHER_OWNER_EMAIL/PASSWORD` | Data-isolation checks |
+| `SNAGLY_ADMIN_EMAIL/PASSWORD` | Admin checks |
 
-The workflow runs on pushes to `main`, pull requests and manual dispatch. GitHub-hosted runners cannot access localhost or a developer laptop.
+The workflow runs on pushes to `main`, pull requests, manual dispatch and a nightly schedule. The quality gate always runs. Live jobs report a notice and skip their execution step when staging secrets are absent. GitHub-hosted runners cannot access localhost or a developer laptop.
 
 ## Quality gates
 
@@ -401,7 +416,8 @@ Before committing:
 ```bash
 python -m compileall -q conftest.py clients config pages test_data tests utils
 python -m ruff check .
-pytest --collect-only -q
+pytest tests/unit -q
+pytest --collect-only -q --traceability-output=reports/traceability
 ```
 
 A change is complete when tests collect, lint and compilation pass; data is isolated and cleaned; no secrets or reports are tracked; and Page Objects, clients, fixtures, tests and documentation remain aligned.

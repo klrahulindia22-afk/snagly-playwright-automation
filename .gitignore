@@ -7,3 +7,6 @@ playwright-report/
 blob-report/
 reports/*.xml
 reports/*.html
+reports/traceability.*
+.coverage
+htmlcov/

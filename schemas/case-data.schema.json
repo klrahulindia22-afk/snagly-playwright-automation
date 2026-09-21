@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["schema_version", "expected_count", "cases"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": 1},
+    "expected_count": {"type": "integer", "minimum": 1},
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "case_id", "module", "submodule", "type", "priority", "scenario",
+          "preconditions", "source_test_data", "role", "review_status", "data_refs", "values"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "case_id": {"type": "string", "pattern": "^SNAG-TC-[0-9]{3}$"},
+          "module": {"type": "string", "minLength": 1},
+          "submodule": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1},
+          "priority": {"enum": ["Critical", "High", "Medium", "Low"]},
+          "scenario": {"type": "string", "minLength": 1},
+          "preconditions": {"type": "string"},
+          "source_test_data": {"type": "string"},
+          "role": {"enum": ["owner", "admin", "team", "client", "other_owner"]},
+          "review_status": {"enum": ["generated_needs_review", "reviewed"]},
+          "data_refs": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "values": {"type": "object"}
+        }
+      }
+    }
+  }
+}

@@ -22,3 +22,8 @@ def test_file_factory_creates_exact_size(test_file_factory):
     attachment = test_file_factory("sample.txt", 101)
     assert isinstance(attachment, Path)
     assert attachment.stat().st_size == 101
+
+
+def test_file_factory_rejects_empty_pattern_for_nonempty_file(test_file_factory):
+    with pytest.raises(ValueError, match="content must not be empty"):
+        test_file_factory("invalid.bin", 1, b"")
